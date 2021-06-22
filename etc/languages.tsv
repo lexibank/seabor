@@ -1,0 +1,49 @@
+ID	Dataset	Name	ChineseName	Family	SubGroup	Latitude	Longitude	Datasets
+Changsha	beidasinitic	Changsha	长沙	Sino-Tibetan	Sinitic	28.85032	112.943344	beidasinitic/beidazihui/housinitic/houzihui/liusinitic
+Chengdu	beidasinitic	Chengdu	成都	Sino-Tibetan	Sinitic	30.605768	103.970947	beidasinitic/beidazihui/housinitic/houzihui/liusinitic
+Guangzhou	beidasinitic	Guangzhou	广州	Sino-Tibetan	Sinitic	23.1253503	112.9476548	beidasinitic/beidazihui/housinitic/houzihui/liusinitic/sagartst
+Kunming	beidasinitic	Kunming	昆明	Sino-Tibetan	Sinitic	25.049711	102.72274	beidasinitic/housinitic/houzihui
+Meixian	beidasinitic	Meixian	梅县	Sino-Tibetan	Sinitic	24.3522958	115.8903375	beidasinitic/beidazihui/housinitic/houzihui/liusinitic
+Yangjiang	beidasinitic	Yangjiang	阳江	Sino-Tibetan	Sinitic	21.7895612	111.966667	beidasinitic
+ShuigenCentralSandong	castrosui	Sandong	三洞乡水根村	Tai-Kadai	Sui	25.724479	107.92172	castrosui
+RenliEasternSandong	castrosui	Renli	榕江县仁里水族乡党民村	Tai-Kadai	Sui	26.116584	108.435839	castrosui
+Pandong	castrosui	Pandong	都匀市阳和水族乡潘洞村	Tai-Kadai	Sui	26.06349	107.693696	castrosui
+XinfengSonaga	castroyi	Sonaga (Xinfeng)		Sino-Tibetan	Nesu	24.4957899	101.3020228	castroyi
+LuzhaiLuzhai	castrozhuang	Luzhai Luzhai	鹿寨鹿寨	Tai-Kadai	Zhuang	24.36935	109.746886	castrozhuang
+XiangzhouYunjiang	castrozhuang	Xiangzhou Yunjiang	象州运江	Tai-Kadai	Zhuang	24.137508	109.733639	castrozhuang
+WuxuanHuangmao	castrozhuang	Wuxuan Huangmao	武宣黄茆	Tai-Kadai	Zhuang	23.780134	109.636403	castrozhuang
+GangbeiZhongli	castrozhuang	Gangbei Zhongli	港北中里	Tai-Kadai	Zhuang	23.281551	109.641785	castrozhuang
+XingbinQianjiang	castrozhuang	Xingbin Qianjiang	兴宾迁江	Tai-Kadai	Zhuang	23.548344	108.900099	castrozhuang
+MashanBaishan	castrozhuang	Mashan Baishan	马山白山	Tai-Kadai	Zhuang	23.68569	108.17574	castrozhuang
+DahuaYantan	castrozhuang	Dahua Yantan	大化岩滩	Tai-Kadai	Zhuang	24.026928	107.570884	castrozhuang
+DuAnBaiwang	castrozhuang	Du'an Baiwang	都安百旺	Tai-Kadai	Zhuang	24.11682	108.41675	castrozhuang
+EasternLuobuohe	chenhmongmien	Luobuohe, Eastern	石板寨	Hmong-Mien	Hmongic	26.63966	107.913354	chenhmongmien
+WesternLuobuohe	chenhmongmien	Luobuohe, Western	高寨	Hmong-Mien	Hmongic	26.854607	107.226676	chenhmongmien
+Chuanqiandian	chenhmongmien	Chuanqiandian	大南山	Hmong-Mien	Hmongic	27.51846	105.421028	chenhmongmien
+CentralGuizhouChuanqiandian	chenhmongmien	Chuanqiandian, Central Guizhou	高坡	Hmong-Mien	Hmongic	26.231562	106.861969	chenhmongmien
+SouthernGuizhouChuanqiandian	chenhmongmien	Chuanqiandian, Southern Guizhou	宗地	Hmong-Mien	Hmongic	25.586343	106.323467	chenhmongmien
+NortheastYunnanChuanqiandian	chenhmongmien	Chuanqiandian, Northeast Yunnan	石门坡	Hmong-Mien	Hmongic	27.096059	103.698607	chenhmongmien
+WesternXiangxi	chenhmongmien	Xiangxi, West	 腊乙坪	Hmong-Mien	Hmongic	28.33212	109.422366	chenhmongmien
+EasternXiangxi	chenhmongmien	Xiangxi, East	小章	Hmong-Mien	Hmongic	28.124036	109.890473	chenhmongmien
+NorthernQiandong	chenhmongmien	Qiandong, North	养蒿	Hmong-Mien	Hmongic	26.68993	108.401145	chenhmongmien
+EasternQiandong	chenhmongmien	Qiandong, East	菜地湾	Hmong-Mien	Hmongic	27.78098	110.499463	chenhmongmien
+SouthernQiandong	chenhmongmien	Qiandong, South	尧告	Hmong-Mien	Hmongic	25.520166	108.779365	chenhmongmien
+WesternBaheng	chenhmongmien	Baheng, West	滚董	Hmong-Mien	Hmongic	25.74971	109.286281	chenhmongmien
+EasternBahen	chenhmongmien	Baheng, East	毛坳	Hmong-Mien	Hmongic	27.11733	111.02615	chenhmongmien
+Dongnu	chenhmongmien	Dongnu	七百弄	Hmong-Mien	Hmongic	24.201523	107.957327	chenhmongmien
+Nunu	chenhmongmien	Nunu	西山	Hmong-Mien	Hmongic	24.232341	107.194266	chenhmongmien
+Numao	chenhmongmien	Numao	瑶麓	Hmong-Mien	Hmongic	25.447767	108.064732	chenhmongmien
+Younuo	chenhmongmien	Younuo	优诺	Hmong-Mien	Hmongic	25.730893	110.115975	chenhmongmien
+She	chenhmongmien	She	下水村	Hmong-Mien	Hmongic	26.264261	110.096988	chenhmongmien
+Jiongnai	chenhmongmien	Jiongnai	龙华	Hmong-Mien	Hmongic	24.071002	110.105752	chenhmongmien
+Mien	chenhmongmien	Mien	龙定	Hmong-Mien	Mienic	24.172823	110.054488	chenhmongmien
+KimMun	chenhmongmien	Kim Mun	烟园	Hmong-Mien	Mienic	18.955781	109.86012	chenhmongmien
+BiaoMin	chenhmongmien	Biao Min	双龙	Hmong-Mien	Mienic	25.82286	111.29622	chenhmongmien
+ZaoMin	chenhmongmien	Zao Min	油岭	Hmong-Mien	Mienic	24.612303	112.266749	chenhmongmien
+Guiyang	housinitic	Guiyang	贵阳	Sino-Tibetan	Sinitic	26.71691	106.638336	housinitic/houzihui
+Haikou	housinitic	Haikou	海口	Sino-Tibetan	Sinitic	20.043869	110.329399	housinitic/houzihui
+Nanning	housinitic	Nanning	南宁	Sino-Tibetan	Sinitic	22.848716	108.366165	housinitic/houzihui
+Wuhan	housinitic	Wuhan	武汉	Sino-Tibetan	Sinitic	30.624086	114.305649	housinitic/houzihui
+Xianggang	housinitic	Xianggang	香港	Sino-Tibetan	Sinitic	22.422645	114.098396	housinitic/houzihui
+Guilin	liusinitic	Guilin	桂林	Sino-Tibetan	Sinitic	25.266667	110.283333	liusinitic
+Tuoluo	wangbai	Tuoluo	妥洛白语	Sino-Tibetan	Bai	23.3833337	102.1839821	wangbai
