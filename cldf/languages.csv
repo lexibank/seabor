@@ -1,0 +1,49 @@
+ID,Name,Glottocode,Glottolog_Name,ISO639P3code,Macroarea,Latitude,Longitude,Family,Dataset,ChineseName,SubGroup,Datasets
+Changsha,Changsha,,,,,28.85032,112.943344,Sino-Tibetan,beidasinitic,长沙,Sinitic,beidasinitic/beidazihui/housinitic/houzihui/liusinitic
+Chengdu,Chengdu,,,,,30.605768,103.970947,Sino-Tibetan,beidasinitic,成都,Sinitic,beidasinitic/beidazihui/housinitic/houzihui/liusinitic
+Guangzhou,Guangzhou,,,,,23.1253503,112.9476548,Sino-Tibetan,beidasinitic,广州,Sinitic,beidasinitic/beidazihui/housinitic/houzihui/liusinitic/sagartst
+Kunming,Kunming,,,,,25.049711,102.72274,Sino-Tibetan,beidasinitic,昆明,Sinitic,beidasinitic/housinitic/houzihui
+Meixian,Meixian,,,,,24.3522958,115.8903375,Sino-Tibetan,beidasinitic,梅县,Sinitic,beidasinitic/beidazihui/housinitic/houzihui/liusinitic
+Yangjiang,Yangjiang,,,,,21.7895612,111.966667,Sino-Tibetan,beidasinitic,阳江,Sinitic,beidasinitic
+ShuigenCentralSandong,Sandong,,,,,25.724479,107.92172,Tai-Kadai,castrosui,三洞乡水根村,Sui,castrosui
+RenliEasternSandong,Renli,,,,,26.116584,108.435839,Tai-Kadai,castrosui,榕江县仁里水族乡党民村,Sui,castrosui
+Pandong,Pandong,,,,,26.06349,107.693696,Tai-Kadai,castrosui,都匀市阳和水族乡潘洞村,Sui,castrosui
+XinfengSonaga,Sonaga (Xinfeng),,,,,24.4957899,101.3020228,Sino-Tibetan,castroyi,,Nesu,castroyi
+LuzhaiLuzhai,Luzhai Luzhai,,,,,24.36935,109.746886,Tai-Kadai,castrozhuang,鹿寨鹿寨,Zhuang,castrozhuang
+XiangzhouYunjiang,Xiangzhou Yunjiang,,,,,24.137508,109.733639,Tai-Kadai,castrozhuang,象州运江,Zhuang,castrozhuang
+WuxuanHuangmao,Wuxuan Huangmao,,,,,23.780134,109.636403,Tai-Kadai,castrozhuang,武宣黄茆,Zhuang,castrozhuang
+GangbeiZhongli,Gangbei Zhongli,,,,,23.281551,109.641785,Tai-Kadai,castrozhuang,港北中里,Zhuang,castrozhuang
+XingbinQianjiang,Xingbin Qianjiang,,,,,23.548344,108.900099,Tai-Kadai,castrozhuang,兴宾迁江,Zhuang,castrozhuang
+MashanBaishan,Mashan Baishan,,,,,23.68569,108.17574,Tai-Kadai,castrozhuang,马山白山,Zhuang,castrozhuang
+DahuaYantan,Dahua Yantan,,,,,24.026928,107.570884,Tai-Kadai,castrozhuang,大化岩滩,Zhuang,castrozhuang
+DuAnBaiwang,Du'an Baiwang,,,,,24.11682,108.41675,Tai-Kadai,castrozhuang,都安百旺,Zhuang,castrozhuang
+EasternLuobuohe,"Luobuohe, Eastern",,,,,26.63966,107.913354,Hmong-Mien,chenhmongmien,石板寨,Hmongic,chenhmongmien
+WesternLuobuohe,"Luobuohe, Western",,,,,26.854607,107.226676,Hmong-Mien,chenhmongmien,高寨,Hmongic,chenhmongmien
+Chuanqiandian,Chuanqiandian,,,,,27.51846,105.421028,Hmong-Mien,chenhmongmien,大南山,Hmongic,chenhmongmien
+CentralGuizhouChuanqiandian,"Chuanqiandian, Central Guizhou",,,,,26.231562,106.861969,Hmong-Mien,chenhmongmien,高坡,Hmongic,chenhmongmien
+SouthernGuizhouChuanqiandian,"Chuanqiandian, Southern Guizhou",,,,,25.586343,106.323467,Hmong-Mien,chenhmongmien,宗地,Hmongic,chenhmongmien
+NortheastYunnanChuanqiandian,"Chuanqiandian, Northeast Yunnan",,,,,27.096059,103.698607,Hmong-Mien,chenhmongmien,石门坡,Hmongic,chenhmongmien
+WesternXiangxi,"Xiangxi, West",,,,,28.33212,109.422366,Hmong-Mien,chenhmongmien, 腊乙坪,Hmongic,chenhmongmien
+EasternXiangxi,"Xiangxi, East",,,,,28.124036,109.890473,Hmong-Mien,chenhmongmien,小章,Hmongic,chenhmongmien
+NorthernQiandong,"Qiandong, North",,,,,26.68993,108.401145,Hmong-Mien,chenhmongmien,养蒿,Hmongic,chenhmongmien
+EasternQiandong,"Qiandong, East",,,,,27.78098,110.499463,Hmong-Mien,chenhmongmien,菜地湾,Hmongic,chenhmongmien
+SouthernQiandong,"Qiandong, South",,,,,25.520166,108.779365,Hmong-Mien,chenhmongmien,尧告,Hmongic,chenhmongmien
+WesternBaheng,"Baheng, West",,,,,25.74971,109.286281,Hmong-Mien,chenhmongmien,滚董,Hmongic,chenhmongmien
+EasternBahen,"Baheng, East",,,,,27.11733,111.02615,Hmong-Mien,chenhmongmien,毛坳,Hmongic,chenhmongmien
+Dongnu,Dongnu,,,,,24.201523,107.957327,Hmong-Mien,chenhmongmien,七百弄,Hmongic,chenhmongmien
+Nunu,Nunu,,,,,24.232341,107.194266,Hmong-Mien,chenhmongmien,西山,Hmongic,chenhmongmien
+Numao,Numao,,,,,25.447767,108.064732,Hmong-Mien,chenhmongmien,瑶麓,Hmongic,chenhmongmien
+Younuo,Younuo,,,,,25.730893,110.115975,Hmong-Mien,chenhmongmien,优诺,Hmongic,chenhmongmien
+She,She,,,,,26.264261,110.096988,Hmong-Mien,chenhmongmien,下水村,Hmongic,chenhmongmien
+Jiongnai,Jiongnai,,,,,24.071002,110.105752,Hmong-Mien,chenhmongmien,龙华,Hmongic,chenhmongmien
+Mien,Mien,,,,,24.172823,110.054488,Hmong-Mien,chenhmongmien,龙定,Mienic,chenhmongmien
+KimMun,Kim Mun,,,,,18.955781,109.86012,Hmong-Mien,chenhmongmien,烟园,Mienic,chenhmongmien
+BiaoMin,Biao Min,,,,,25.82286,111.29622,Hmong-Mien,chenhmongmien,双龙,Mienic,chenhmongmien
+ZaoMin,Zao Min,,,,,24.612303,112.266749,Hmong-Mien,chenhmongmien,油岭,Mienic,chenhmongmien
+Guiyang,Guiyang,,,,,26.71691,106.638336,Sino-Tibetan,housinitic,贵阳,Sinitic,housinitic/houzihui
+Haikou,Haikou,,,,,20.043869,110.329399,Sino-Tibetan,housinitic,海口,Sinitic,housinitic/houzihui
+Nanning,Nanning,,,,,22.848716,108.366165,Sino-Tibetan,housinitic,南宁,Sinitic,housinitic/houzihui
+Wuhan,Wuhan,,,,,30.624086,114.305649,Sino-Tibetan,housinitic,武汉,Sinitic,housinitic/houzihui
+Xianggang,Xianggang,,,,,22.422645,114.098396,Sino-Tibetan,housinitic,香港,Sinitic,housinitic/houzihui
+Guilin,Guilin,,,,,25.266667,110.283333,Sino-Tibetan,liusinitic,桂林,Sinitic,liusinitic
+Tuoluo,Tuoluo,,,,,23.3833337,102.1839821,Sino-Tibetan,wangbai,妥洛白语,Bai,wangbai
