@@ -1,12 +1,9 @@
 from tabulate import tabulate
-from lingpy.convert.graph import networkx2igraph
 from lingpy import *
 import networkx as nx
 from sys import argv
 
 from collections import defaultdict
-from itertools import combinations, product
-from tqdm import tqdm as pb
 
 import library.map as cfeature
 from library.util import flatten
@@ -14,9 +11,6 @@ from library.util import flatten
 import matplotlib.pyplot as plt
 from matplotlib.patches import Wedge, Circle, FancyArrowPatch
 from pyconcepticon import Concepticon
-import matplotlib.path as mpath
-from cartopy import *
-import cartopy.io.img_tiles as cimgt
 import cartopy.crs as ccrs
 from csvw.dsv import UnicodeDictReader
 

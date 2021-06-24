@@ -1,10 +1,9 @@
-from pyedictor import fetch
-from lingpy import *
+from collabutils.edictor import fetch
 from collections import defaultdict
 from tabulate import tabulate
 from csvw.dsv import UnicodeDictReader
 
-wl = fetch("seabor", base_url="https://digling.org/edictor/", to_lingpy=True)
+wl = fetch("seabor", base_url="https://digling.org/edictor/")
 wl.output("tsv", filename="../raw/wordlist")
 
 datasets = defaultdict(lambda : defaultdict(list))
