@@ -32,10 +32,29 @@
    automated borrowing detection       0.9088    0.8439     0.8751
    ...
    ```
-   This will take a couple of minutes.
+   This will take a couple of minutes. Results can slightly vary due ot the permutation procedure.
+
 4. Now we can plot the varieties on a map (see Figure 1):
    ```shell
    $ cldfbench seabor.plotlanguages
    ```
    As well as recreate other figures from the paper.
-   # FIXME #
+   ```shell
+   $ cldfbench seabor.plotmaps --concepts name flower correctright
+
+5. And you can also check for the significance with respect to the stability of certain concept lists.
+   ```shell
+   $ cldfbench seabor.distribution --conceptlist Swadesh-1955-100 --runs 10000
+   Conceptlist            Proportion of Non-Borrowed Items    Number of Items
+   -------------------  ----------------------------------  -----------------
+   Swadesh-1955-100                                   0.81                 78
+   != Swadesh-1955-100                                0.74                172
+   Significance: 0.0300 (0.0688)
+   $ cldfbench seabor.distribution --conceptlist Tadmor-2009-100 --runs 10000
+   Conceptlist           Proportion of Non-Borrowed Items    Number of Items
+   ------------------  ----------------------------------  -----------------
+   Tadmor-2009-100                                   0.80                 61
+   != Tadmor-2009-100                                0.74                189
+   Significance: 0.0711 (0.0590)  
+   ```
+   Note that again the results may slightly differ, due to the randomization process.

@@ -80,7 +80,7 @@ def run(args):
     cldf = ds.cldf_reader()
     languages = collections.OrderedDict([(r.id, r) for r in cldf.objects('LanguageTable')])
 
-    with Figure(ds.cldf_dir / 'languages_map.pdf', languages, title='Languages in the sample') as fig:
+    with Figure(ds.dir / "plots" / 'languages_map.pdf', languages, title='Languages in the sample') as fig:
         for i, (lid, language) in enumerate(sorted(languages.items(), key=lambda x: x[0])):
             fig.plot_language(language)
 

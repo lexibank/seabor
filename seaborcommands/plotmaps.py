@@ -9,6 +9,8 @@ from clldutils.misc import slug
 from lexibank_seabor import Dataset
 from .plotlanguages import pcols, Figure
 
+def register(parser):
+    parser.add_argument("--concepts", action="store", nargs="+", default="and")
 
 def run(args):
     ds = Dataset()
@@ -35,9 +37,10 @@ def run(args):
         tokens[lid] = {k: sorted(v, key=lambda s: len(s))[-1] for k, v in tokens[lid].items()}
 
     for borid, forms in borids.items():
-        plot(
-            forms[0]['Parameter_ID'], borid, forms, languages, present, tokens, ds.dir / 'concepts')
-        break
+        if forms[0]["Parameter_ID"] in args.concepts:
+            plot(
+                forms[0]['Parameter_ID'], borid, forms, languages, present, tokens,
+                ds.dir / 'plots')
 
 
 def plot(concept, borid, forms, languages, present, tokens, outdir):

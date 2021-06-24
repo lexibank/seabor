@@ -1,5 +1,5 @@
 """
-
+Create admixture plots from the lexical borrowing data.
 """
 import itertools
 import webbrowser
@@ -30,7 +30,7 @@ def run(args):
 
     concepts = collections.OrderedDict(
         [(r['Concepticon_Gloss'], r['ID']) for r in cldf.iter_rows('ParameterTable')])
-    fname = 'auto'
+    fname = 'admixture'
 
     swadesh = set(
         c.concepticon_gloss for c in
@@ -94,7 +94,7 @@ def run(args):
         language.data['props'] = props
         language.data['total'] = total
 
-    with Figure(ds.cldf_dir / '{}.pdf'.format(fname), langs) as fig,\
+    with Figure(ds.dir / "plots" / '{}.pdf'.format(fname), langs) as fig,\
             Table(args, 'doculect', 'family', 'subgroup',
                   'Single', 'ST', 'HM', 'TK', 'HM-ST', 'ST-TK', 'HM-TK', 'ALL') as table:
         for lid, language in langs.items():
