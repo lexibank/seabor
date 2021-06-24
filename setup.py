@@ -16,7 +16,7 @@ setup(
     },
     install_requires=[
         'pylexibank',
-        'lingrex',
+        'lingrex>=1.1.0',
         'collabutils',
         'cartopy',
         'python-igraph',
