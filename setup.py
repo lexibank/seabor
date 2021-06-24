@@ -8,7 +8,7 @@ setup(
     zip_safe=False,
     entry_points={
         'cldfbench.dataset': [
-            'bds=cldfbench_bds:Dataset',
+            'bds=lexibank_bds:Dataset',
         ],
         'cldfbench.commands': [
             'bds=bdscommands',

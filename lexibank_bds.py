@@ -4,9 +4,9 @@ from collections import defaultdict
 import attr
 from lingpy import Wordlist
 from collabutils.edictor import fetch
-from tabulate import tabulate
 from pylexibank import Dataset as BaseDataset, Language, Lexeme
 from clldutils.misc import slug
+from clldutils.markup import Table
 
 
 @attr.s
@@ -58,21 +58,32 @@ class Dataset(BaseDataset):
             datasets[wl[idx, 'dataset']][wl[idx, 'concept']] += [wl[idx, 'doculect']]
             langs[wl[idx, 'dataset']][wl[idx, 'doculect']] += [wl[idx, 'concept']]
 
-        tab = []
-        for dataset in datasets:
-            tab += [[dataset, len(datasets[dataset]), len(langs[dataset])]]
-        print(tabulate(tab))
+        with Table('ID', 'Source', 'Language Family', 'Varieties', 'Concepts', tablefmt='simple') as t:
+            for dataset in datasets:
+                t.append([dataset, '', '', len(langs[dataset]), len(datasets[dataset])])
 
     def cmd_makecldf(self, args):
         from lingrex.cognates import common_morpheme_cognates
         from lingrex.borrowing import internal_cognates, external_cognates
 
-        #wl = self.wl()
-        #internal_cognates(wl, runs=10000, ref="autocogids", partial=True,
-        #          method="lexstat", threshold=0.55, cluster_method="infomap")
-        #common_morpheme_cognates(wl, ref="autocogid", cognates="autocogids",
-        #                 morphemes="automorphemes")
-        #external_cognates(wl, cognates="autocogid", ref="autoborid")
+        wl = self.wl()
+        # See paper, section "4 Results"!
+        internal_cognates(
+            wl,
+            runs=10000,
+            ref="autocogids",
+            partial=True,
+            method="lexstat",
+            threshold=0.55,
+            cluster_method="infomap")
+        common_morpheme_cognates(
+            wl, ref="autocogid", cognates="autocogids",
+            morphemes="automorphemes")
+        external_cognates(wl, cognates="autocogid", ref="autoborid", threshold=0.3)
+
+        #
+        # FIXME: print Table 2 from the paper!
+        #
 
         wl = Wordlist('wordlist-borrowings.tsv')
         args.writer.add_languages()

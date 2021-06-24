@@ -1,6 +1,8 @@
 """
 
 """
+import collections
+import itertools
 from collections import defaultdict
 
 from tabulate import tabulate
@@ -15,6 +17,18 @@ from cldfbench.cli_util import add_catalog_spec
 from lexibank_bds import Dataset
 import library.map as cfeature
 from library.util import flatten
+
+ordercols = [
+    'missing',
+    'singleton',
+    'Sino-Tibetan',
+    'Hmong-Mien',
+    'Tai-Kadai',
+    'Hmong-Mien--Sino-Tibetan',
+    'Sino-Tibetan--Tai-Kadai',
+    'Hmong-Mien--Tai-Kadai',
+    'Hmong-Mien--Sino-Tibetan--Tai-Kadai',
+]
 
 
 def register(parser):
@@ -64,33 +78,27 @@ def run(args):
         lats += [float(data.cldf.latitude)]
         lons += [float(data.cldf.longitude)]
 
+    etc, etb = defaultdict(list), defaultdict(list)
+    for col, d in [('autoborid', etb), ('autocogid', etc)]:
+        for key, forms in itertools.groupby(
+                sorted(cldf['FormTable'], key=lambda f: f[col] or ''), lambda f: f[col]):
+            d[key] = list(forms)
 
-
-
-    etb = wl.get_etymdict(ref='autoborid')
-    etc = wl.get_etymdict(ref='autocogid')
-
-    ordercols = [
-    'missing',
-    'singleton',
-    'Sino-Tibetan',
-    'Hmong-Mien',
-    'Tai-Kadai',
-    'Hmong-Mien--Sino-Tibetan',
-    'Sino-Tibetan--Tai-Kadai',
-    'Hmong-Mien--Tai-Kadai',
-    'Hmong-Mien--Sino-Tibetan--Tai-Kadai',
-    ]
+    #etb = wl.get_etymdict(ref='autoborid')
+    #etc = wl.get_etymdict(ref='autocogid')
 
     for doc, language in langs.items():
+        # forms by concept for this doculect:
         concepts = wl.get_dict(col=doc)
-        this_family = language['Family']
+        this_family = language.data['Family']
         props = defaultdict(float)
         total = 0
         for concept in selected_concepts:
             prop = []
+            # for form in ...
             for idx in concepts.get(concept, []):
                 borid, cogid = wl[idx, 'autoborid'], wl[idx, 'autocogid']
+                # get the other members of the cognate class and borrowing cluster respectively:
                 borids, cogids = [x for x in flatten(etb.get(borid, [])) if
                               wl[x, 'autoborid'] != '0'], [x for x in flatten(
                     etc.get(cogid, [])) if wl[x, 'autocogids'] != '0']
