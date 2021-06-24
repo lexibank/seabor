@@ -10,17 +10,17 @@ from matplotlib import pyplot as plt
 
 from lexibank_bds import Dataset
 
-pcols = {
-    'missing': 'white',
-    'Hmong-Mien--Sino-Tibetan--Tai-Kadai': 'black',
-    'Hmong-Mien': 'Crimson',
-    'Sino-Tibetan': 'DodgerBlue',
-    'Tai-Kadai': 'Gold',
-    'Hmong-Mien--Sino-Tibetan': 'Orchid',
-    'Hmong-Mien--Tai-Kadai':    'Orange',
-    'Sino-Tibetan--Tai-Kadai':  'Green',
-    'singleton': '0.5',
-}
+pcols = collections.OrderedDict([
+    ('missing', 'white'),
+    ('singleton', '0.5'),
+    ('Sino-Tibetan', 'DodgerBlue'),
+    ('Hmong-Mien', 'Crimson'),
+    ('Tai-Kadai', 'Gold'),
+    ('Hmong-Mien--Sino-Tibetan', 'Orchid'),
+    ('Sino-Tibetan--Tai-Kadai',  'Green'),
+    ('Hmong-Mien--Tai-Kadai',    'Orange'),
+    ('Hmong-Mien--Sino-Tibetan--Tai-Kadai', 'black'),
+])
 
 
 class Figure:
