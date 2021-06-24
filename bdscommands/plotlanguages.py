@@ -70,6 +70,10 @@ class Figure:
             kw.update(text_kw)
         self.ax.text(lon + text_offest[0], lat + text_offest[1], text or language.cldf.name, **kw)
 
+    def plot_text(self, language, text, text_offest=(-0.075, -0.075), **kw):
+        lat, lon = float(language.cldf.latitude), float(language.cldf.longitude)
+        self.ax.text(lon + text_offest[0], lat + text_offest[1], text, **kw)
+
 
 def run(args):
     ds = Dataset()
