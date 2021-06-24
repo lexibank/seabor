@@ -2,7 +2,7 @@ import pathlib
 from collections import defaultdict
 
 import attr
-from lingpy import Wordlist
+from lingpy import Wordlist, evaluate
 from collabutils.edictor import fetch
 from pylexibank import Dataset as BaseDataset, Language, Lexeme
 from clldutils.misc import slug
@@ -81,9 +81,14 @@ class Dataset(BaseDataset):
             morphemes="automorphemes")
         external_cognates(wl, cognates="autocogid", ref="autoborid", threshold=0.3)
 
-        #
-        # FIXME: print Table 2 from the paper!
-        #
+        # print bcubed scores
+        p1, r1, f1 = evaluate.acd.bcubes(wl, "ucogid", "autocogid", pprint=False)
+        p2, r2, f2 = evaluate.acd.bcubes(wl, "uborid", "autoborid", pprint=False)
+        with Table("method", "precision", "recall", "f-score",
+                tablefmt="simple", floatfmt=".4f") as tab:
+            tab.append(["automated cognate detection", p1, r1, f1])
+            tab.append(["automated borrowing detection", p2, r2, f2])
+
 
         wl = Wordlist('wordlist-borrowings.tsv')
         args.writer.add_languages()
