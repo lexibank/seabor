@@ -2,20 +2,20 @@ from setuptools import setup
 
 
 setup(
-    name='cldfbench_borrowing-detection-study',
-    py_modules=['cldfbench_bds'],
+    name='lexibank_seabor',
+    py_modules=['lexibank_seabor'],
     include_package_data=True,
     zip_safe=False,
     entry_points={
-        'cldfbench.dataset': [
-            'bds=lexibank_bds:Dataset',
+        'lexibank.dataset': [
+            'seabor=lexibank_seabor:Dataset',
         ],
         'cldfbench.commands': [
-            'bds=bdscommands',
+            'seabor=seaborcommands',
         ]
     },
     install_requires=[
-        'cldfbench',
+        'pylexibank',
         'lingrex',
         'collabutils',
         'cartopy',

@@ -3,13 +3,16 @@
     "aboutUrl": null,
     "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#Wordlist",
     "dc:isVersionOf": null,
+    "dc:license": "https://creativecommons.org/licenses/by/4.0/",
     "dc:related": null,
-    "dcat:accessURL": "https://github.com/lingpy/borrowing-detection-study",
+    "dc:source": "sources.bib",
+    "dc:title": "Borrowing Detection Study",
+    "dcat:accessURL": "https://github.com/lexibank/seabor",
     "prov:wasDerivedFrom": [
         {
-            "rdf:about": "https://github.com/lingpy/borrowing-detection-study",
+            "rdf:about": "https://github.com/lexibank/seabor",
             "rdf:type": "prov:Entity",
-            "dc:created": "cb4c817",
+            "dc:created": "35d1a4d",
             "dc:title": "Repository"
         },
         {
@@ -133,6 +136,16 @@
                         "dc:description": "Automatically inferred cognate classes",
                         "datatype": "string",
                         "name": "autocogids"
+                    },
+                    {
+                        "dc:description": "Prosodic string representation.",
+                        "datatype": "string",
+                        "name": "Prosodic_String"
+                    },
+                    {
+                        "dc:description": "Identifier in the lexibank dataset.",
+                        "datatype": "string",
+                        "name": "ID_In_Source"
                     }
                 ],
                 "foreignKeys": [
