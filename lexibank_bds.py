@@ -24,6 +24,14 @@ class Word(Lexeme):
         default=None,
         metadata={'dc:description': 'Automatically inferred cognate classes'}
     )
+    Prosodic_String=attr.ib(
+        default=None,
+        metadata={"dc:description": "Prosodic string representation."}
+    )
+    ID_In_Source=attr.ib(
+        default=None,
+        metadata={"dc:description": "Identifier in the lexibank dataset."}
+    )
 
 
 @attr.s
@@ -63,6 +71,7 @@ class Dataset(BaseDataset):
                 t.append([dataset, '', '', len(langs[dataset]), len(datasets[dataset])])
 
     def cmd_makecldf(self, args):
+        args.writer.add_sources()
         from lingrex.cognates import common_morpheme_cognates
         from lingrex.borrowing import internal_cognates, external_cognates
 
@@ -70,7 +79,7 @@ class Dataset(BaseDataset):
         # See paper, section "4 Results"!
         internal_cognates(
             wl,
-            runs=10000,
+            runs=100,
             ref="autocogids",
             partial=True,
             method="lexstat",
@@ -113,6 +122,8 @@ class Dataset(BaseDataset):
                 autoborid=row['autoborid'],
                 autocogid=row['autocogid'],
                 autocogids=row['autocogids'],
+                ID_In_Source=row["lexibank_id"],
+                Source=row["dataset"]
             )
 
         # autocogids, autocogid, autoborid.
