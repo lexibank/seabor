@@ -1,5 +1,5 @@
 {
-    "title": "Borrowing Detection Study",
+    "title": "CLDF dataset accompanying List and Forkel's \"Borrowing Detection in Multilingual Wordlists\" from 2021",
     "access_right": "open",
     "keywords": [
         "cldf:Wordlist",
@@ -22,5 +22,6 @@
     "upload_type": "dataset",
     "license": {
         "id": "CC-BY-4.0"
-    }
+    },
+    "description": "<p>Cite the source of the dataset as:</p>\n\n<blockquote>\n<p>List, Johann-Mattis and Forkel, Robert (2021): Automated identification of borrowings in multilingual wordlists. Leipzig: Max Planck Institute for Evolutionary Anthropology.</p>\n</blockquote>"
 }

@@ -1,14 +1,20 @@
-# Borrowing Detection Study
+# CLDF dataset accompanying List and Forkel's "Borrowing Detection in Multilingual Wordlists" from 2021
 
 ## How to cite
 
 If you use these data please cite
-this dataset using the DOI of the [particular released version](../../releases/) you were using
+- the original source
+  > List, Johann-Mattis and Forkel, Robert (2021): Automated identification of borrowings in multilingual wordlists. Leipzig: Max Planck Institute for Evolutionary Anthropology.
+- the derived dataset using the DOI of the [particular released version](../../releases/) you were using
 
 ## Description
 
 
+The CLDF dataset provides manually annotated and automated borrowings in SEA languages along with code by which borrowings can be detected.
+
 This dataset is licensed under a CC-BY-4.0 license
+
+Available online at https://github.com/lexibank/seabor
 
 ## Statistics
 
@@ -28,6 +34,17 @@ This dataset is licensed under a CC-BY-4.0 license
 - **Tokens:** 52,431
 - **Segments:** 384 (0 BIPA errors, 0 CTLS sound class errors, 378 CLTS modified)
 - **Inventory size (avg):** 59.96
+
+# Contributors
+
+Name | GitHub user | Description | Role
+--- | --- | --- | ---
+Johann-Mattis List | @LinguList | maintainer | Author
+Robert Forkel | @xrotwang | maintainer | Author
+
+
+
+
 
 ## CLDF Datasets
 

@@ -58,7 +58,7 @@ class Doculect(Language):
 
 class Dataset(BaseDataset):
     dir = pathlib.Path(__file__).parent
-    id = "borrowing-detection-study"
+    id = "seabor"
     language_class = Doculect
     lexeme_class = Word
 

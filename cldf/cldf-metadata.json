@@ -1,24 +1,27 @@
 {
     "@context": "http://www.w3.org/ns/csvw",
     "aboutUrl": null,
+    "dc:bibliographicCitation": "List, Johann-Mattis and Forkel, Robert (2021): Automated identification of borrowings in multilingual wordlists. Leipzig: Max Planck Institute for Evolutionary Anthropology.",
     "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#Wordlist",
+    "dc:description": "The CLDF dataset provides manually annotated and automated borrowings in SEA languages along with code by which borrowings can be detected.",
+    "dc:identifier": "https://github.com/lexibank/seabor",
     "dc:isVersionOf": null,
     "dc:license": "https://creativecommons.org/licenses/by/4.0/",
     "dc:related": null,
     "dc:source": "sources.bib",
-    "dc:title": "Borrowing Detection Study",
-    "dcat:accessURL": "https://github.com/lexibank/seabor",
+    "dc:title": "CLDF dataset accompanying List and Forkel's \"Borrowing Detection in Multilingual Wordlists\" from 2021",
+    "dcat:accessURL": "https://github.com/lingpy/borrowing-detection-study",
     "prov:wasDerivedFrom": [
         {
-            "rdf:about": "https://github.com/lexibank/seabor",
+            "rdf:about": "https://github.com/lingpy/borrowing-detection-study",
             "rdf:type": "prov:Entity",
-            "dc:created": "35d1a4d",
+            "dc:created": "44c085f",
             "dc:title": "Repository"
         },
         {
             "rdf:about": "https://github.com/glottolog/glottolog",
             "rdf:type": "prov:Entity",
-            "dc:created": "v4.4-6-g0affd80637",
+            "dc:created": "v4.4",
             "dc:title": "Glottolog"
         },
         {
@@ -28,23 +31,23 @@
             "dc:title": "Concepticon"
         },
         {
-            "rdf:about": "https://github.com/cldf-clts/clts",
+            "rdf:about": "https://github.com/cldf-clts/clts/",
             "rdf:type": "prov:Entity",
-            "dc:created": "v2.1.0-1-gec173ae",
+            "dc:created": "v2.0.0",
             "dc:title": "CLTS"
         }
     ],
     "prov:wasGeneratedBy": [
         {
             "dc:title": "python",
-            "dc:description": "3.8.5"
+            "dc:description": "3.9.5"
         },
         {
             "dc:title": "python-packages",
             "dc:relation": "requirements.txt"
         }
     ],
-    "rdf:ID": "borrowing-detection-study",
+    "rdf:ID": "seabor",
     "rdf:type": "http://www.w3.org/ns/dcat#Distribution",
     "dialect": {
         "commentPrefix": null
