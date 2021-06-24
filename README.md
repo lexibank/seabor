@@ -1,4 +1,4 @@
-# Dataset borrowing-detection-study
+# Borrowing Detection Study
 
 ## How to cite
 
@@ -8,30 +8,26 @@ this dataset using the DOI of the [particular released version](../../releases/)
 ## Description
 
 
+This dataset is licensed under a CC-BY-4.0 license
+
 ## Statistics
 
 
 ![Glottolog: 0%](https://img.shields.io/badge/Glottolog-0%25-red.svg "Glottolog: 0%")
 ![Concepticon: 0%](https://img.shields.io/badge/Concepticon-0%25-red.svg "Concepticon: 0%")
-![Source: 0%](https://img.shields.io/badge/Source-0%25-red.svg "Source: 0%")
+![Source: 100%](https://img.shields.io/badge/Source-100%25-brightgreen.svg "Source: 100%")
 ![BIPA: 100%](https://img.shields.io/badge/BIPA-100%25-brightgreen.svg "BIPA: 100%")
 ![CLTS SoundClass: 100%](https://img.shields.io/badge/CLTS%20SoundClass-100%25-brightgreen.svg "CLTS SoundClass: 100%")
 
 - **Varieties:** 48
 - **Concepts:** 250
 - **Lexemes:** 11,476
-- **Sources:** 0
+- **Sources:** 10
 - **Synonymy:** 1.07
 - **Invalid lexemes:** 0
 - **Tokens:** 52,431
-- **Segments:** 384 (0 BIPA errors, 0 CTLS sound class errors, 377 CLTS modified)
+- **Segments:** 384 (0 BIPA errors, 0 CTLS sound class errors, 378 CLTS modified)
 - **Inventory size (avg):** 59.96
-
-## Possible Improvements:
-
-
-
-- Entries missing sources: 11476/11476 (100.00%)
 
 ## CLDF Datasets
 
