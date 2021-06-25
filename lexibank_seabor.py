@@ -1,3 +1,4 @@
+import random
 import pathlib
 import collections
 
@@ -87,6 +88,7 @@ class Dataset(BaseDataset):
                     dataset, ref(sources[dataset]), len(langs[dataset]), len(datasets[dataset])])
 
     def cmd_makecldf(self, args):
+        random.seed(int(input('Random seed [int]: ') or 1234))
         args.writer.add_sources()
         t = args.writer.cldf.add_component(
             'BorrowingTable',
@@ -112,7 +114,7 @@ class Dataset(BaseDataset):
             ref="autocogids",
             partial=True,
             method="lexstat",
-            threshold=0.55,
+            threshold=0.50,
             cluster_method="infomap")
         # Convert partial cognates into full cognates:
         lingrex.cognates.common_morpheme_cognates(

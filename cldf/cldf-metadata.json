@@ -15,13 +15,13 @@
         {
             "rdf:about": "https://github.com/lexibank/seabor",
             "rdf:type": "prov:Entity",
-            "dc:created": "b53b285",
+            "dc:created": "dcb88c3",
             "dc:title": "Repository"
         },
         {
             "rdf:about": "https://github.com/glottolog/glottolog",
             "rdf:type": "prov:Entity",
-            "dc:created": "v4.4-6-g0affd80637",
+            "dc:created": "v4.4",
             "dc:title": "Glottolog"
         },
         {
@@ -33,7 +33,7 @@
         {
             "rdf:about": "https://github.com/cldf-clts/clts",
             "rdf:type": "prov:Entity",
-            "dc:created": "v2.1.0-1-gec173ae",
+            "dc:created": "v2.1.0",
             "dc:title": "CLTS"
         }
     ],
@@ -362,7 +362,7 @@
         {
             "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#BorrowingTable",
             "dc:description": "",
-            "dc:extent": 7088,
+            "dc:extent": 7320,
             "tableSchema": {
                 "columns": [
                     {

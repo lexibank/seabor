@@ -30,8 +30,8 @@ Available online at https://github.com/lexibank/seabor
 - **Lexemes:** 11,476
 - **Sources:** 10
 - **Synonymy:** 1.07
-- **Cognacy:** 37,403 cognates in 8,990 cognate sets (3,743 singletons)
-- **Cognate Diversity:** 0.78
+- **Cognacy:** 37,403 cognates in 9,607 cognate sets (4,255 singletons)
+- **Cognate Diversity:** 0.83
 - **Invalid lexemes:** 0
 - **Tokens:** 52,431
 - **Segments:** 384 (0 BIPA errors, 0 CTLS sound class errors, 378 CLTS modified)
