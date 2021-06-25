@@ -2,6 +2,7 @@
 Plot cross-family borrowings on a map.
 """
 import itertools
+import webbrowser
 import collections
 
 from clldutils.misc import slug
@@ -9,27 +10,34 @@ from clldutils.misc import slug
 from lexibank_seabor import Dataset
 from .plotlanguages import pcols, Figure
 
+
 def register(parser):
     parser.add_argument("--concepts", action="store", nargs="+", default="and")
+
 
 def run(args):
     ds = Dataset()
     cldf = ds.cldf_reader()
     languages = collections.OrderedDict([(r.id, r) for r in cldf.objects('LanguageTable')])
 
-    borids = collections.defaultdict(list)
     present = collections.defaultdict(set)
     tokens = collections.defaultdict(lambda: collections.defaultdict(list))
 
-    for borid, forms in itertools.groupby(
-            sorted(cldf['FormTable'], key=lambda f: f['autoborid'] or ''), lambda f: f['autoborid']):
-        forms = [f for f in forms if f['Form']]
-        for form in forms:
-            tokens[form['Language_ID']][form['Parameter_ID']].append(form['Segments'])
-            present[form['Language_ID']].add(form['Parameter_ID'])
+    allforms = {r['id']: r for r in cldf.iter_rows('FormTable', 'id')}
+    for form in allforms.values():
+        tokens[form['Language_ID']][form['Parameter_ID']].append(form['Segments'])
+        present[form['Language_ID']].add(form['Parameter_ID'])
 
-        if borid and len(set(languages[f['Language_ID']].data['Family'] for f in forms)) > 1:
-            borids[borid] = list(forms)
+    borids = collections.defaultdict(list)
+    for borid, forms in itertools.groupby(
+        sorted(cldf['BorrowingTable'], key=lambda f: f['Xenolog_Cluster_ID']),
+        lambda f: f['Xenolog_Cluster_ID']
+    ):
+        if borid.startswith('auto'):
+            borid = borid.split('-')[-1]
+            forms = [allforms[f['Target_Form_ID']] for f in forms]
+            if len(set(languages[f['Language_ID']].data['Family'] for f in forms)) > 1:
+                borids[borid] = forms
 
     for lid in list(tokens.keys()):
         # If a variety has counterparts for a concept that are not member of a borrowing cluster,
@@ -38,16 +46,16 @@ def run(args):
 
     for borid, forms in borids.items():
         if forms[0]["Parameter_ID"] in args.concepts:
-            plot(
+            fname = plot(
                 forms[0]['Parameter_ID'], borid, forms, languages, present, tokens,
                 ds.dir / 'plots')
+            args.log.info('Plot saved to {}'.format(fname))
+            webbrowser.open(fname.as_uri())
 
 
 def plot(concept, borid, forms, languages, present, tokens, outdir):
     borrowing_cluster = {f['Language_ID']: f for f in forms}
     has_concept = {k: concept in present[k] for k in languages}
-
-    print('[i] making map for concept {}-{}'.format(concept, borid))
 
     with Figure(
             outdir / 'concept-{}-{}.pdf'.format(slug(concept, lowercase=False), borid), languages

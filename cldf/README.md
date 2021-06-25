@@ -1,19 +1,23 @@
 <a name="ds-cldfmetadatajson"> </a>
 
-# Wordlist Borrowing Detection Study
+# Wordlist CLDF dataset accompanying List and Forkel's "Borrowing Detection in Multilingual Wordlists" from 2021
 
 **CLDF Metadata**: [cldf-metadata.json](./cldf-metadata.json)
 
 **Sources**: [sources.bib](./sources.bib)
 
+The CLDF dataset provides manually annotated and automated borrowings in SEA languages along with code by which borrowings can be detected.
+
 property | value
  --- | ---
+[dc:bibliographicCitation](http://purl.org/dc/terms/bibliographicCitation) | List, Johann-Mattis and Forkel, Robert (2021): Automated identification of borrowings in multilingual wordlists. Leipzig: Max Planck Institute for Evolutionary Anthropology.
 [dc:conformsTo](http://purl.org/dc/terms/conformsTo) | [CLDF Wordlist](http://cldf.clld.org/v1.0/terms.rdf#Wordlist)
+[dc:identifier](http://purl.org/dc/terms/identifier) | https://github.com/lexibank/seabor
 [dc:license](http://purl.org/dc/terms/license) | https://creativecommons.org/licenses/by/4.0/
 [dcat:accessURL](http://www.w3.org/ns/dcat#accessURL) | https://github.com/lexibank/seabor
-[prov:wasDerivedFrom](http://www.w3.org/ns/prov#wasDerivedFrom) | <ol><li><a href="https://github.com/lexibank/seabor/tree/35d1a4d">lexibank/seabor 35d1a4d</a></li><li><a href="https://github.com/glottolog/glottolog/tree/0affd80637">Glottolog v4.4-6-g0affd80637</a></li><li><a href="https://github.com/concepticon/concepticon-data/tree/v2.5.0">Concepticon v2.5.0</a></li><li><a href="https://github.com/cldf-clts/clts/tree/ec173ae">CLTS v2.1.0-1-gec173ae</a></li></ol>
-[prov:wasGeneratedBy](http://www.w3.org/ns/prov#wasGeneratedBy) | <ol><li><strong>python</strong>: 3.8.5</li><li><strong>python-packages</strong>: <a href="./requirements.txt">requirements.txt</a></li></ol>
-[rdf:ID](http://www.w3.org/1999/02/22-rdf-syntax-ns#ID) | borrowing-detection-study
+[prov:wasDerivedFrom](http://www.w3.org/ns/prov#wasDerivedFrom) | <ol><li><a href="https://github.com/lexibank/seabor/tree/b53b285">lexibank/seabor b53b285</a></li><li><a href="https://github.com/glottolog/glottolog/tree/0affd80637">Glottolog v4.4-6-g0affd80637</a></li><li><a href="https://github.com/concepticon/concepticon-data/tree/v2.5.0">Concepticon v2.5.0</a></li><li><a href="https://github.com/cldf-clts/clts/tree/ec173ae">CLTS v2.1.0-1-gec173ae</a></li></ol>
+[prov:wasGeneratedBy](http://www.w3.org/ns/prov#wasGeneratedBy) | <ol><li><strong>lingpy-rcParams</strong>: <a href="./lingpy-rcParams.json">lingpy-rcParams.json</a></li><li><strong>python</strong>: 3.8.5</li><li><strong>python-packages</strong>: <a href="./requirements.txt">requirements.txt</a></li></ol>
+[rdf:ID](http://www.w3.org/1999/02/22-rdf-syntax-ns#ID) | seabor
 [rdf:type](http://www.w3.org/1999/02/22-rdf-syntax-ns#type) | http://www.w3.org/ns/dcat#Distribution
 
 
@@ -42,9 +46,6 @@ Name/Property | Datatype | Description
 `Loan` | `boolean` | 
 `Graphemes` | `string` | 
 `Profile` | `string` | 
-`autoborid` | `string` | Automatically inferred borrowing Identifier
-`autocogid` | `string` | Automatically inferred cognate class
-`autocogids` | `string` | Automatically inferred cognate classes
 `Prosodic_String` | `string` | Prosodic string representation.
 `ID_In_Source` | `string` | Identifier in the lexibank dataset.
 
@@ -90,4 +91,57 @@ Name/Property | Datatype | Description
 [Name](http://cldf.clld.org/v1.0/terms.rdf#name) | `string` | 
 [Concepticon_ID](http://cldf.clld.org/v1.0/terms.rdf#concepticonReference) | `string` | 
 `Concepticon_Gloss` | `string` | 
+
+## <a name="table-cognatescsv"></a>Table [cognates.csv](./cognates.csv)
+
+
+This dataset provides three kinds of cognacy judgements, distinguished by
+Cognate_Detection_Method:
+
+- expert: Cognate classes assigned by an expert
+- lingrex.borrowing.internal_cognates: Partial cognates computed with the lingrex package.
+- lingrex.cognates.common_morpheme_cognates: Cognates derived from partial cognacy relations
+  computed with the lingrex package.
+
+
+property | value
+ --- | ---
+[dc:conformsTo](http://purl.org/dc/terms/conformsTo) | [CLDF CognateTable](http://cldf.clld.org/v1.0/terms.rdf#CognateTable)
+[dc:extent](http://purl.org/dc/terms/extent) | 37403
+
+
+### Columns
+
+Name/Property | Datatype | Description
+ --- | --- | --- 
+[ID](http://cldf.clld.org/v1.0/terms.rdf#id) | `string` | Primary key
+[Form_ID](http://cldf.clld.org/v1.0/terms.rdf#formReference) | `string` | References [forms.csv::ID](#table-formscsv)
+[Form](http://linguistics-ontology.org/gold/2010/FormUnit) | `string` | 
+[Cognateset_ID](http://cldf.clld.org/v1.0/terms.rdf#cognatesetReference) | `string` | 
+`Doubt` | `boolean` | 
+`Cognate_Detection_Method` | `string` | 
+[Source](http://cldf.clld.org/v1.0/terms.rdf#source) | list of `string` (separated by `;`) | References [sources.bib::BibTeX-key](./sources.bib)
+[Alignment](http://cldf.clld.org/v1.0/terms.rdf#alignment) | list of `string` (separated by ` `) | 
+`Alignment_Method` | `string` | 
+`Alignment_Source` | `string` | 
+
+## <a name="table-borrowingscsv"></a>Table [borrowings.csv](./borrowings.csv)
+
+property | value
+ --- | ---
+[dc:conformsTo](http://purl.org/dc/terms/conformsTo) | [CLDF BorrowingTable](http://cldf.clld.org/v1.0/terms.rdf#BorrowingTable)
+[dc:extent](http://purl.org/dc/terms/extent) | 7088
+
+
+### Columns
+
+Name/Property | Datatype | Description
+ --- | --- | --- 
+[ID](http://cldf.clld.org/v1.0/terms.rdf#id) | `string` | Primary key
+[Target_Form_ID](http://cldf.clld.org/v1.0/terms.rdf#targetFormReference) | `string` | References the loanword, i.e. the form as borrowed into the target language<br>References [forms.csv::ID](#table-formscsv)
+[Source_Form_ID](http://cldf.clld.org/v1.0/terms.rdf#sourceFormReference) | `string` | References the source word of a borrowing<br>References [forms.csv::ID](#table-formscsv)
+[Comment](http://cldf.clld.org/v1.0/terms.rdf#comment) | `string` | 
+[Source](http://cldf.clld.org/v1.0/terms.rdf#source) | list of `string` (separated by `;`) | References [sources.bib::BibTeX-key](./sources.bib)
+`Xenolog_Cluster_ID` | `string` | 
+`Borrowing_Detection_Method` | `string` | 
 

@@ -10,18 +10,18 @@
     "dc:related": null,
     "dc:source": "sources.bib",
     "dc:title": "CLDF dataset accompanying List and Forkel's \"Borrowing Detection in Multilingual Wordlists\" from 2021",
-    "dcat:accessURL": "https://github.com/lingpy/borrowing-detection-study",
+    "dcat:accessURL": "https://github.com/lexibank/seabor",
     "prov:wasDerivedFrom": [
         {
-            "rdf:about": "https://github.com/lingpy/borrowing-detection-study",
+            "rdf:about": "https://github.com/lexibank/seabor",
             "rdf:type": "prov:Entity",
-            "dc:created": "c689dd9",
+            "dc:created": "b53b285",
             "dc:title": "Repository"
         },
         {
             "rdf:about": "https://github.com/glottolog/glottolog",
             "rdf:type": "prov:Entity",
-            "dc:created": "v4.4",
+            "dc:created": "v4.4-6-g0affd80637",
             "dc:title": "Glottolog"
         },
         {
@@ -31,16 +31,20 @@
             "dc:title": "Concepticon"
         },
         {
-            "rdf:about": "https://github.com/cldf-clts/clts/",
+            "rdf:about": "https://github.com/cldf-clts/clts",
             "rdf:type": "prov:Entity",
-            "dc:created": "v2.0.0",
+            "dc:created": "v2.1.0-1-gec173ae",
             "dc:title": "CLTS"
         }
     ],
     "prov:wasGeneratedBy": [
         {
+            "dc:title": "lingpy-rcParams",
+            "dc:relation": "lingpy-rcParams.json"
+        },
+        {
             "dc:title": "python",
-            "dc:description": "3.9.5"
+            "dc:description": "3.8.5"
         },
         {
             "dc:title": "python-packages",
@@ -124,21 +128,6 @@
                     {
                         "datatype": "string",
                         "name": "Profile"
-                    },
-                    {
-                        "dc:description": "Automatically inferred borrowing Identifier",
-                        "datatype": "string",
-                        "name": "autoborid"
-                    },
-                    {
-                        "dc:description": "Automatically inferred cognate class",
-                        "datatype": "string",
-                        "name": "autocogid"
-                    },
-                    {
-                        "dc:description": "Automatically inferred cognate classes",
-                        "datatype": "string",
-                        "name": "autocogids"
                     },
                     {
                         "dc:description": "Prosodic string representation.",
@@ -294,6 +283,166 @@
                 ]
             },
             "url": "parameters.csv"
+        },
+        {
+            "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#CognateTable",
+            "dc:description": "\nThis dataset provides three kinds of cognacy judgements, distinguished by\nCognate_Detection_Method:\n\n- expert: Cognate classes assigned by an expert\n- lingrex.borrowing.internal_cognates: Partial cognates computed with the lingrex package.\n- lingrex.cognates.common_morpheme_cognates: Cognates derived from partial cognacy relations\n  computed with the lingrex package.\n",
+            "dc:extent": 37403,
+            "tableSchema": {
+                "columns": [
+                    {
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#id",
+                        "name": "ID"
+                    },
+                    {
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#formReference",
+                        "name": "Form_ID"
+                    },
+                    {
+                        "datatype": "string",
+                        "propertyUrl": "http://linguistics-ontology.org/gold/2010/FormUnit",
+                        "name": "Form"
+                    },
+                    {
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#cognatesetReference",
+                        "name": "Cognateset_ID"
+                    },
+                    {
+                        "datatype": "boolean",
+                        "name": "Doubt"
+                    },
+                    {
+                        "datatype": "string",
+                        "default": "expert",
+                        "name": "Cognate_Detection_Method"
+                    },
+                    {
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#source",
+                        "separator": ";",
+                        "name": "Source"
+                    },
+                    {
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#alignment",
+                        "separator": " ",
+                        "name": "Alignment"
+                    },
+                    {
+                        "datatype": "string",
+                        "name": "Alignment_Method"
+                    },
+                    {
+                        "datatype": "string",
+                        "name": "Alignment_Source"
+                    }
+                ],
+                "foreignKeys": [
+                    {
+                        "columnReference": [
+                            "Form_ID"
+                        ],
+                        "reference": {
+                            "resource": "forms.csv",
+                            "columnReference": [
+                                "ID"
+                            ]
+                        }
+                    }
+                ],
+                "primaryKey": [
+                    "ID"
+                ]
+            },
+            "url": "cognates.csv"
+        },
+        {
+            "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#BorrowingTable",
+            "dc:description": "",
+            "dc:extent": 7088,
+            "tableSchema": {
+                "columns": [
+                    {
+                        "datatype": {
+                            "base": "string",
+                            "format": "[a-zA-Z0-9_\\-]+"
+                        },
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#id",
+                        "required": true,
+                        "name": "ID"
+                    },
+                    {
+                        "dc:description": "References the loanword, i.e. the form as borrowed into the target language",
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#targetFormReference",
+                        "required": true,
+                        "name": "Target_Form_ID"
+                    },
+                    {
+                        "dc:description": "References the source word of a borrowing",
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#sourceFormReference",
+                        "required": false,
+                        "name": "Source_Form_ID"
+                    },
+                    {
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#comment",
+                        "required": false,
+                        "name": "Comment"
+                    },
+                    {
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#source",
+                        "required": false,
+                        "separator": ";",
+                        "name": "Source"
+                    },
+                    {
+                        "dc:description": "",
+                        "name": "Xenolog_Cluster_ID"
+                    },
+                    {
+                        "dc:description": "",
+                        "datatype": {
+                            "base": "string",
+                            "format": "expert|lingrex.borrowing.external_cognates"
+                        },
+                        "name": "Borrowing_Detection_Method"
+                    }
+                ],
+                "foreignKeys": [
+                    {
+                        "columnReference": [
+                            "Target_Form_ID"
+                        ],
+                        "reference": {
+                            "resource": "forms.csv",
+                            "columnReference": [
+                                "ID"
+                            ]
+                        }
+                    },
+                    {
+                        "columnReference": [
+                            "Source_Form_ID"
+                        ],
+                        "reference": {
+                            "resource": "forms.csv",
+                            "columnReference": [
+                                "ID"
+                            ]
+                        }
+                    }
+                ],
+                "primaryKey": [
+                    "ID"
+                ]
+            },
+            "url": "borrowings.csv"
         }
     ]
 }

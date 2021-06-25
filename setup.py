@@ -15,7 +15,7 @@ setup(
         ]
     },
     install_requires=[
-        'pylexibank',
+        'pylexibank>=3.2.0',
         'lingrex>=1.1.0',
         'collabutils',
         'cartopy',

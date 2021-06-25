@@ -46,15 +46,23 @@ def run(args):
     else:
         selected_concepts = concepts
 
-    allforms = sorted(cldf['FormTable'], key=lambda f: (f['Language_ID'], f['Parameter_ID']))
+    allforms = collections.OrderedDict([
+        (f['ID'], f) for f in
+        sorted(cldf['FormTable'], key=lambda f: (f['Language_ID'], f['Parameter_ID']))])
 
     forms_by_cogid, forms_by_borid = collections.defaultdict(list), collections.defaultdict(list)
-    for row, d in [('autoborid', forms_by_borid), ('autocogid', forms_by_cogid)]:
-        for form in allforms:
-            if form[row]:
-                d[form[row]].append(form)
+    cogid_by_formid, borid_by_formid = {}, {}
+    for row in cldf['CognateTable']:
+        if row['Cognateset_ID'].startswith('auto-full-'):
+            forms_by_cogid[row['Cognateset_ID']].append(allforms[row['Form_ID']])
+            cogid_by_formid[row['Form_ID']] = row['Cognateset_ID']
 
-    for lid, forms in itertools.groupby(allforms, lambda f: f['Language_ID']):
+    for row in cldf['BorrowingTable']:
+        if row['Xenolog_Cluster_ID'].startswith('auto-'):
+            forms_by_borid[row['Xenolog_Cluster_ID']].append(allforms[row['Target_Form_ID']])
+            borid_by_formid[row['Target_Form_ID']] = row['Xenolog_Cluster_ID']
+
+    for lid, forms in itertools.groupby(allforms.values(), lambda f: f['Language_ID']):
         language = langs[lid]
 
         # forms by concept for this doculect:
@@ -67,8 +75,8 @@ def run(args):
             prop = []
             for form in concepts.get(cid, []):
                 # get the other members of the cognate class and borrowing cluster respectively:
-                borrowing_cluster = forms_by_borid.get(form['autoborid'], [])
-                cognate_class = forms_by_cogid.get(form['autocogid'], [])
+                borrowing_cluster = forms_by_borid.get(borid_by_formid.get(form['ID']), [])
+                cognate_class = forms_by_cogid.get(cogid_by_formid.get(form['ID']), [])
 
                 if len(borrowing_cluster) > 1:
                     families = '--'.join(sorted(k for k in set(

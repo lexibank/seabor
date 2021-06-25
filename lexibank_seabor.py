@@ -4,12 +4,12 @@ import collections
 import attr
 from lingpy import Wordlist, evaluate
 from collabutils.edictor import fetch
-from pylexibank import Dataset as BaseDataset, Language, Lexeme
+from pylexibank import Dataset as BaseDataset, Language, Lexeme, Cognate
 from clldutils.misc import slug
 from clldutils.markup import Table
 from pycldf import Sources
-from lingrex.cognates import common_morpheme_cognates
-from lingrex.borrowing import internal_cognates, external_cognates
+import lingrex.cognates
+import lingrex.borrowing
 
 
 def ref(src):
@@ -24,24 +24,6 @@ def ref(src):
 
 @attr.s
 class Word(Lexeme):
-    autoborid = attr.ib(
-        default=None,
-        converter=lambda s: None if s in ('0', 0) else int(s),
-        metadata={'dc:description': 'Automatically inferred borrowing Identifier'}
-    )
-    autocogid = attr.ib(
-        default=None,
-        metadata={'dc:description': 'Automatically inferred cognate class'}
-    )
-    autocogids = attr.ib(
-        default=None,
-        metadata={'dc:description': 'Automatically inferred cognate classes'}
-    )
-    Xenolog_Cluster = attr.ib(
-        default=None,
-        converter=lambda s: None if s in ('0', 0) else int(s),
-        metadata={'dc:description': 'Etymologically related words with a known borrowing history.'}
-    )
     Prosodic_String=attr.ib(
         default=None,
         metadata={"dc:description": "Prosodic string representation."}
@@ -61,11 +43,25 @@ class Doculect(Language):
     Datasets = attr.ib(default=None)
 
 
+@attr.s
+class MultiCognate(Cognate):
+    """
+    This dataset provides three kinds of cognacy judgements, distinguished by
+    Cognate_Detection_Method:
+
+    - expert: Cognate classes assigned by an expert
+    - lingrex.borrowing.internal_cognates: Partial cognates computed with the lingrex package.
+    - lingrex.cognates.common_morpheme_cognates: Cognates derived from partial cognacy relations
+      computed with the lingrex package.
+    """
+
+
 class Dataset(BaseDataset):
     dir = pathlib.Path(__file__).parent
     id = "seabor"
     language_class = Doculect
     lexeme_class = Word
+    cognate_class = MultiCognate
 
     _wlname = 'seabor.sqlite3'
 
@@ -92,26 +88,40 @@ class Dataset(BaseDataset):
 
     def cmd_makecldf(self, args):
         args.writer.add_sources()
+        t = args.writer.cldf.add_component(
+            'BorrowingTable',
+            {
+                'name': 'Xenolog_Cluster_ID',
+                'dc:description': '',
+            },
+            {
+                'name': 'Borrowing_Detection_Method',
+                'dc:description': '',
+                'datatype': {
+                    'base': 'string', 'format': 'expert|lingrex.borrowing.external_cognates'}
+            }
+        )
+        t.common_props['dc:description'] = ''
 
         wl = self.wl()
         # See paper, section "4 Results" and section "3.2 Methods".
         # Detect partial cognates:
-        internal_cognates(
+        lingrex.borrowing.internal_cognates(
             wl,
-            runs=10000,
+            runs=100 if args.dev else 10000,
             ref="autocogids",
             partial=True,
             method="lexstat",
             threshold=0.55,
             cluster_method="infomap")
         # Convert partial cognates into full cognates:
-        common_morpheme_cognates(
+        lingrex.cognates.common_morpheme_cognates(
             wl,
             ref="autocogid",
             cognates="autocogids",
             morphemes="automorphemes")
         # Detect cross-family shallow cognates:
-        external_cognates(
+        lingrex.borrowing.external_cognates(
             wl,
             cognates="autocogid",
             ref="autoborid",
@@ -139,19 +149,43 @@ class Dataset(BaseDataset):
                     Concepticon_Gloss=row['concept'].upper(),
                     Name=row['concept_in_source'])
                 concepts.add(row['concept'])
-            args.writer.add_form_with_segments(
+            lex = args.writer.add_form_with_segments(
                 ID='{}-{}'.format(row['dataset'], row['lexibank_id']),
                 Language_ID=row['doculect'],
                 Parameter_ID=slug(row['concept']),
                 Value=row['value'],
                 Form=row['form'],
                 Segments=row['tokens'],
-                autoborid=row['autoborid'],
-                autocogid=row['autocogid'],
-                autocogids=row['autocogids'],
                 ID_In_Source=row["lexibank_id"],
-                Cognacy=row["ucogid"],
-                Xenolog_Cluster=row["uborid"],
                 Source=row["dataset"],
                 Prosodic_String=row["structure"]
             )
+            if row['ucogid'] and row['ucogid'] not in ('0', 0):
+                args.writer.add_cognate(
+                    lexeme=lex,
+                    Cognateset_ID='expert-{}'.format(row['ucogid']),
+                    Cognate_Detection_Method='expert')
+            if row['autocogid'] and row['autocogid'] not in ('0', 0):
+                args.writer.add_cognate(
+                    lexeme=lex,
+                    Cognateset_ID='auto-full-{}'.format(row['autocogid']),
+                    Cognate_Detection_Method='lingrex.cognates.common_morpheme_cognates')
+            if row['autocogids'] and row['autocogids'] not in ('0', 0):
+                for cogid in row['autocogids']:
+                    args.writer.add_cognate(
+                        lexeme=lex,
+                        Cognateset_ID='auto-partial-{}'.format(cogid),
+                        Cognate_Detection_Method='lingrex.borrowing.internal_cognates')
+            if row['uborid'] and row['uborid'] not in ('0', 0):
+                args.writer.objects['BorrowingTable'].append(dict(
+                    ID='expert-' + lex['ID'],
+                    Target_Form_ID=lex['ID'],
+                    Xenolog_Cluster_ID='expert-{}'.format(row['uborid']),
+                    Comment=row['source'],
+                ))
+            if row['autoborid'] and row['autoborid'] not in ('0', 0):
+                args.writer.objects['BorrowingTable'].append(dict(
+                    ID='auto-' + lex['ID'],
+                    Target_Form_ID=lex['ID'],
+                    Xenolog_Cluster_ID='auto-{}'.format(row['autoborid']),
+                ))
