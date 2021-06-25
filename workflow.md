@@ -4,6 +4,7 @@
    ```shell
    pip install -e .
    ```
+   Please follow specific installation instructions for [cartopy](https://scitools.org.uk/cartopy/docs/latest/) and [igraph](https://igraph.org), since both packages will require non-Python packages to be installed on your system.
 2. Optionally fetch raw data from EDICTOR:
    ```shell
    $ cldfbench download lexibank_seabor.py
@@ -34,6 +35,8 @@
    ```
    This will take a couple of minutes. Results can slightly vary due ot the permutation procedure.
 
+   In order to guarantee access to the reference catalogs ([Glottolog](https://glottolog.org), [Concepticon](https://concepticon.clld.org) and [CLTS](https://clts.clld.org)), please follow the installation instructions for the [pylexibank package](https://github.com/lexibank/pylexibank), or see the [instructions for cldfbench](https://github.com/cldf/cldfbench/#catalogs), which provide more detail. 
+
 4. Now we can plot the varieties on a map (see Figure 1):
    ```shell
    $ cldfbench seabor.plotlanguages
@@ -41,6 +44,8 @@
    As well as recreate other figures from the paper.
    ```shell
    $ cldfbench seabor.plotmaps --concepts name flower correctright
+   $ cldfbench seabor.piechart
+   ```
 
 5. And you can also check for the significance with respect to the stability of certain concept lists.
    ```shell

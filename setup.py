@@ -19,6 +19,7 @@ setup(
         'lingrex>=1.1.0',
         'collabutils',
         'cartopy',
+        'matplotlib',
         'python-igraph',
         'scipy',
     ],

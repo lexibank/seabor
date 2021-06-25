@@ -37,6 +37,11 @@ class Word(Lexeme):
         default=None,
         metadata={'dc:description': 'Automatically inferred cognate classes'}
     )
+    Xenolog_Cluster = attr.ib(
+        default=None,
+        converter=lambda s: None if s in ('0', 0) else int(s),
+        metadata={'dc:description': 'Etymologically related words with a known borrowing history.'}
+    )
     Prosodic_String=attr.ib(
         default=None,
         metadata={"dc:description": "Prosodic string representation."}
@@ -145,5 +150,8 @@ class Dataset(BaseDataset):
                 autocogid=row['autocogid'],
                 autocogids=row['autocogids'],
                 ID_In_Source=row["lexibank_id"],
-                Source=row["dataset"]
+                Cognacy=row["ucogid"],
+                Xenolog_Cluster=row["uborid"],
+                Source=row["dataset"],
+                Prosodic_String=row["structure"]
             )
