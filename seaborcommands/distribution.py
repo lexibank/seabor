@@ -17,6 +17,10 @@ def register(parser):
     parser.add_argument('--conceptlist', action='store', default=None)
     add_catalog_spec(parser, 'concepticon')
     parser.add_argument('--runs', action="store", type=int, default=1000)
+    parser.add_argument(
+        '--seed',
+        type=lambda s: random.seed(int(s)),
+        default=None)
 
 
 class Scorer:

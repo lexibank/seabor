@@ -4,7 +4,7 @@
    ```shell
    pip install -e .
    ```
-   Please follow specific installation instructions for [cartopy](https://scitools.org.uk/cartopy/docs/latest/) and [igraph](https://igraph.org), since both packages will require non-Python packages to be installed on your system.
+   Specific installation procedures for [cartopy](https://scitools.org.uk/cartopy/docs/latest/) and [igraph](https://igraph.org) may be necessary, since both packages require non-Python packages to be installed on your system.
 2. Optionally fetch raw data from EDICTOR:
    ```shell
    $ cldfbench download lexibank_seabor.py
@@ -25,15 +25,16 @@
    ```
 3. Create the CLDF dataset augmented with automatically inferred attributes:
    ```shell
-   $ cldfbench lexibank.makecldf lexibank_seabor.py
+   $ cldfbench lexibank.makecldf lexibank_seabor.py --glottolog-version v4.4 --concepticon-version v2.5.0 --clts-version v2.1.0
    ...
    method                           precision    recall    f-score
    -----------------------------  -----------  --------  ---------
-   automated cognate detection         0.8710    0.8861     0.8785
-   automated borrowing detection       0.9088    0.8439     0.8751
+   automated cognate detection         0.9032    0.8650     0.8837
+   automated borrowing detection       0.9134    0.8204     0.8644
    ...
    ```
-   This will take a couple of minutes. Results can slightly vary due ot the permutation procedure.
+   This will take a couple of minutes. To use the default random seed, just hit
+   enter when prompted for it.
 
    In order to guarantee access to the reference catalogs ([Glottolog](https://glottolog.org), [Concepticon](https://concepticon.clld.org) and [CLTS](https://clts.clld.org)), please follow the installation instructions for the [pylexibank package](https://github.com/lexibank/pylexibank), or see the [instructions for cldfbench](https://github.com/cldf/cldfbench/#catalogs), which provide more detail. 
 
@@ -44,22 +45,24 @@
    As well as recreate other figures from the paper.
    ```shell
    $ cldfbench seabor.plotmaps --concepts name flower correctright
-   $ cldfbench seabor.piechart
+   $ cldfbench seabor.piecharts
    ```
 
 5. And you can also check for the significance with respect to the stability of certain concept lists.
    ```shell
-   $ cldfbench seabor.distribution --conceptlist Swadesh-1955-100 --runs 10000
+   $ cldfbench seabor.distribution --conceptlist Swadesh-1955-100 --runs 10000 --seed 1234
    Conceptlist            Proportion of Non-Borrowed Items    Number of Items
    -------------------  ----------------------------------  -----------------
-   Swadesh-1955-100                                   0.81                 78
-   != Swadesh-1955-100                                0.74                172
-   Significance: 0.0300 (0.0688)
-   $ cldfbench seabor.distribution --conceptlist Tadmor-2009-100 --runs 10000
+   Swadesh-1955-100                                   0.80                 78
+   != Swadesh-1955-100                                0.70                172
+   Significance: 0.0038 (0.0975)   
+
+   $ cldfbench seabor.distribution --conceptlist Tadmor-2009-100 --runs 10000 --seed 1234
    Conceptlist           Proportion of Non-Borrowed Items    Number of Items
    ------------------  ----------------------------------  -----------------
-   Tadmor-2009-100                                   0.80                 61
-   != Tadmor-2009-100                                0.74                189
-   Significance: 0.0711 (0.0590)  
+   Tadmor-2009-100                                   0.78                 61
+   != Tadmor-2009-100                                0.72                189
+   Significance: 0.0660 (0.0609)
    ```
-   Note that again the results may slightly differ, due to the randomization process.
+   Note that the results may slightly differ if a different random seed is passed in.
+
