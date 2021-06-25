@@ -105,6 +105,8 @@ class Dataset(BaseDataset):
         )
         t.common_props['dc:description'] = ''
 
+        c2cid = {c.gloss: c.id for c in args.concepticon.api.conceptsets.values()}
+
         wl = self.wl()
         # See paper, section "4 Results" and section "3.2 Methods".
         # Detect partial cognates:
@@ -149,6 +151,7 @@ class Dataset(BaseDataset):
                 args.writer.add_concept(
                     ID=slug(row['concept']),
                     Concepticon_Gloss=row['concept'].upper(),
+                    Concepticon_ID=c2cid[row['concept'].upper()],
                     Name=row['concept_in_source'])
                 concepts.add(row['concept'])
             lex = args.writer.add_form_with_segments(
