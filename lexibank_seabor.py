@@ -94,16 +94,24 @@ class Dataset(BaseDataset):
             'BorrowingTable',
             {
                 'name': 'Xenolog_Cluster_ID',
-                'dc:description': '',
+                'dc:description': 'Identifier for a Xenolog cluster',
             },
             {
                 'name': 'Borrowing_Detection_Method',
-                'dc:description': '',
+                'dc:description': 'Method used to assign Xenolog clusters',
                 'datatype': {
                     'base': 'string', 'format': 'expert|lingrex.borrowing.external_cognates'}
             }
         )
-        t.common_props['dc:description'] = ''
+        t.common_props['dc:description'] = """\
+This dataset provides two kinds of borrowing judgements distinguished by
+Borrowing_Detection_Method. Borrowings are clustered into "Xenolog clusters",
+i.e. sets of words which are not entirely related by common descent, but also
+by lateral transfer.
+
+- expert: Xenolog clusters assigned by an export
+- lingrex.borrowing.external_cognates: Xenolog clusters are computed with the
+  lingrex package"""
 
         c2cid = {c.gloss: c.id for c in args.concepticon.api.conceptsets.values()}
 

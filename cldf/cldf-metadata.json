@@ -15,7 +15,7 @@
         {
             "rdf:about": "https://github.com/lexibank/seabor",
             "rdf:type": "prov:Entity",
-            "dc:created": "18ee723",
+            "dc:created": "f8bf556",
             "dc:title": "Repository"
         },
         {
@@ -361,7 +361,7 @@
         },
         {
             "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#BorrowingTable",
-            "dc:description": "",
+            "dc:description": "This dataset provides two kinds of borrowing judgements distinguished by\nBorrowing_Detection_Method. Borrowings are clustered into \"Xenolog clusters\",\ni.e. sets of words which are not entirely related by common descent, but also\nby lateral transfer.\n\n- expert: Xenolog clusters assigned by an export\n- lingrex.borrowing.external_cognates: Xenolog clusters are computed with the\n  lingrex package",
             "dc:extent": 7320,
             "tableSchema": {
                 "columns": [
@@ -402,11 +402,11 @@
                         "name": "Source"
                     },
                     {
-                        "dc:description": "",
+                        "dc:description": "Identifier for a Xenolog cluster",
                         "name": "Xenolog_Cluster_ID"
                     },
                     {
-                        "dc:description": "",
+                        "dc:description": "Method used to assign Xenolog clusters",
                         "datatype": {
                             "base": "string",
                             "format": "expert|lingrex.borrowing.external_cognates"

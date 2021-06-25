@@ -15,7 +15,7 @@ property | value
 [dc:identifier](http://purl.org/dc/terms/identifier) | https://github.com/lexibank/seabor
 [dc:license](http://purl.org/dc/terms/license) | https://creativecommons.org/licenses/by/4.0/
 [dcat:accessURL](http://www.w3.org/ns/dcat#accessURL) | https://github.com/lexibank/seabor
-[prov:wasDerivedFrom](http://www.w3.org/ns/prov#wasDerivedFrom) | <ol><li><a href="https://github.com/lexibank/seabor/tree/18ee723">lexibank/seabor 18ee723</a></li><li><a href="https://github.com/glottolog/glottolog/tree/v4.4">Glottolog v4.4</a></li><li><a href="https://github.com/concepticon/concepticon-data/tree/v2.5.0">Concepticon v2.5.0</a></li><li><a href="https://github.com/cldf-clts/clts/tree/v2.1.0">CLTS v2.1.0</a></li></ol>
+[prov:wasDerivedFrom](http://www.w3.org/ns/prov#wasDerivedFrom) | <ol><li><a href="https://github.com/lexibank/seabor/tree/f8bf556">lexibank/seabor f8bf556</a></li><li><a href="https://github.com/glottolog/glottolog/tree/v4.4">Glottolog v4.4</a></li><li><a href="https://github.com/concepticon/concepticon-data/tree/v2.5.0">Concepticon v2.5.0</a></li><li><a href="https://github.com/cldf-clts/clts/tree/v2.1.0">CLTS v2.1.0</a></li></ol>
 [prov:wasGeneratedBy](http://www.w3.org/ns/prov#wasGeneratedBy) | <ol><li><strong>lingpy-rcParams</strong>: <a href="./lingpy-rcParams.json">lingpy-rcParams.json</a></li><li><strong>python</strong>: 3.8.5</li><li><strong>python-packages</strong>: <a href="./requirements.txt">requirements.txt</a></li></ol>
 [rdf:ID](http://www.w3.org/1999/02/22-rdf-syntax-ns#ID) | seabor
 [rdf:type](http://www.w3.org/1999/02/22-rdf-syntax-ns#type) | http://www.w3.org/ns/dcat#Distribution
@@ -127,6 +127,15 @@ Name/Property | Datatype | Description
 
 ## <a name="table-borrowingscsv"></a>Table [borrowings.csv](./borrowings.csv)
 
+This dataset provides two kinds of borrowing judgements distinguished by
+Borrowing_Detection_Method. Borrowings are clustered into "Xenolog clusters",
+i.e. sets of words which are not entirely related by common descent, but also
+by lateral transfer.
+
+- expert: Xenolog clusters assigned by an export
+- lingrex.borrowing.external_cognates: Xenolog clusters are computed with the
+  lingrex package
+
 property | value
  --- | ---
 [dc:conformsTo](http://purl.org/dc/terms/conformsTo) | [CLDF BorrowingTable](http://cldf.clld.org/v1.0/terms.rdf#BorrowingTable)
@@ -142,6 +151,6 @@ Name/Property | Datatype | Description
 [Source_Form_ID](http://cldf.clld.org/v1.0/terms.rdf#sourceFormReference) | `string` | References the source word of a borrowing<br>References [forms.csv::ID](#table-formscsv)
 [Comment](http://cldf.clld.org/v1.0/terms.rdf#comment) | `string` | 
 [Source](http://cldf.clld.org/v1.0/terms.rdf#source) | list of `string` (separated by `;`) | References [sources.bib::BibTeX-key](./sources.bib)
-`Xenolog_Cluster_ID` | `string` | 
-`Borrowing_Detection_Method` | `string` | 
+`Xenolog_Cluster_ID` | `string` | Identifier for a Xenolog cluster
+`Borrowing_Detection_Method` | `string` | Method used to assign Xenolog clusters
 
