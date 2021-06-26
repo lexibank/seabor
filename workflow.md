@@ -63,6 +63,11 @@
    Tadmor-2009-100                                   0.78                 61
    != Tadmor-2009-100                                0.72                189
    Significance: 0.0660 (0.0609)
+
+   $ cldfbench seabor.distribution
+   Conceptlist      Proportion of Non-Borrowed Items    Number of Items
+   -------------  ----------------------------------  -----------------
+   All items                                    0.73                250
    ```
    Note that the results may slightly differ if a different random seed is passed in.
 
