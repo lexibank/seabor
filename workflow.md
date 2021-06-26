@@ -42,13 +42,32 @@
    ```shell
    $ cldfbench seabor.plotlanguages
    ```
-   As well as recreate other figures from the paper.
+   ![varieties](plots/languages_map.jpg)
+
+5. Recreate the "admixture" plot:
    ```shell
-   $ cldfbench seabor.plotmaps --concepts name flower correctright
    $ cldfbench seabor.piecharts
    ```
+   ![admixture](plots/admixture.jpg)
 
-5. And you can also check for the significance with respect to the stability of certain concept lists.
+6. And plot xenolog clusters for selected concepts:
+   - ```shell
+     $ cldfbench seabor.plotmaps --concepts name
+     ```
+     ![name-146](plots/concept-name-146.jpg)
+     ![name-147](plots/concept-name-147.jpg)
+   - ```shell
+     $ cldfbench seabor.plotmaps --concepts flower
+     ```
+     ![flower-88](plots/concept-flower-88.jpg)
+   - ```shell
+     $ cldfbench seabor.plotmaps --concepts correctright
+     ```
+     ![correctright-43](plots/concept-correctright-43.jpg)
+     ![correctright-44](plots/concept-correctright-44.jpg)
+     ![correctright-45](plots/concept-correctright-45.jpg)
+
+7. And you can also check for the significance with respect to the stability of certain concept lists.
    ```shell
    $ cldfbench seabor.distribution --conceptlist Swadesh-1955-100 --runs 10000 --seed 1234
    Conceptlist            Proportion of Non-Borrowed Items    Number of Items

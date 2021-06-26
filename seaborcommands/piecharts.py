@@ -12,10 +12,11 @@ from clldutils.clilib import Table, add_format
 
 from lexibank_seabor import Dataset
 
-from .plotlanguages import pcols, Figure
+from .plotlanguages import pcols, Figure, add_figformat
 
 
 def register(parser):
+    add_figformat(parser)
     add_format(parser, default='simple')
     parser.add_argument('--swadesh100', action='store_true', default=False)
     parser.add_argument('--borrowed', action='store_true', default=False)
@@ -102,7 +103,7 @@ def run(args):
         language.data['props'] = props
         language.data['total'] = total
 
-    with Figure(ds.dir / "plots" / '{}.pdf'.format(fname), langs) as fig,\
+    with Figure(args, ds.dir / "plots" / fname, langs) as fig,\
             Table(args, 'doculect', 'family', 'subgroup',
                   'Single', 'ST', 'HM', 'TK', 'HM-ST', 'ST-TK', 'HM-TK', 'ALL') as table:
         for lid, language in langs.items():

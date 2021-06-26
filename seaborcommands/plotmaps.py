@@ -8,10 +8,11 @@ import collections
 from clldutils.misc import slug
 
 from lexibank_seabor import Dataset
-from .plotlanguages import pcols, Figure
+from .plotlanguages import pcols, Figure, add_figformat
 
 
 def register(parser):
+    add_figformat(parser)
     parser.add_argument("--concepts", action="store", nargs="+", default="and")
 
 
@@ -47,18 +48,18 @@ def run(args):
     for borid, forms in borids.items():
         if forms[0]["Parameter_ID"] in args.concepts:
             fname = plot(
-                forms[0]['Parameter_ID'], borid, forms, languages, present, tokens,
+                args, forms[0]['Parameter_ID'], borid, forms, languages, present, tokens,
                 ds.dir / 'plots')
             args.log.info('Plot saved to {}'.format(fname))
             webbrowser.open(fname.as_uri())
 
 
-def plot(concept, borid, forms, languages, present, tokens, outdir):
+def plot(args, concept, borid, forms, languages, present, tokens, outdir):
     borrowing_cluster = {f['Language_ID']: f for f in forms}
     has_concept = {k: concept in present[k] for k in languages}
 
     with Figure(
-            outdir / 'concept-{}-{}.pdf'.format(slug(concept, lowercase=False), borid), languages
+            args, outdir / 'concept-{}-{}'.format(slug(concept, lowercase=False), borid), languages
     ) as fig:
         for i, (lid, language) in enumerate(sorted(languages.items(), key=lambda x: x[0])):
             color, text = 'white', ''  # The default for languages with no words for a concept.

@@ -4,6 +4,7 @@ Plot location of varieties on a map. See Figure 1.
 import webbrowser
 import collections
 
+from PIL import Image
 import cartopy.feature as cfeature
 import cartopy.crs as ccrs
 from matplotlib import pyplot as plt
@@ -24,10 +25,11 @@ pcols = collections.OrderedDict([
 
 
 class Figure:
-    def __init__(self, fname, languages, title=None):
+    def __init__(self, args, fname, languages, title=None):
         lats = [k.cldf.latitude for k in languages.values()]
         lons = [k.cldf.longitude for k in languages.values()]
-        self.fname = fname
+        self.format = getattr(args, 'fig_format', 'pdf')
+        self.fname = fname.parent / '{}.{}'.format(fname.name, self.format)
         self.title = title or self.fname.stem
         self.extent = [
             round(min(lons) - 1, 1),
@@ -53,7 +55,14 @@ class Figure:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         plt.title(self.title)
-        plt.savefig(str(self.fname))
+        if self.format == 'jpg':
+            mplfname = self.fname.parent / '{}.png'.format(self.fname.stem)
+            plt.savefig(str(mplfname))
+            img = Image.open(str(mplfname)).convert('RGB')
+            img.save(str(self.fname), optimize=True, quality=95)
+            mplfname.unlink()
+        else:
+            plt.savefig(str(self.fname))
         plt.close()
 
     def plot_language(
@@ -75,12 +84,26 @@ class Figure:
         self.ax.text(lon + text_offest[0], lat + text_offest[1], text, **kw)
 
 
+def add_figformat(parser):
+    parser.add_argument(
+        '--fig-format',
+        default='pdf',
+        const='pdf',
+        nargs='?',
+        choices=('svg', 'png', 'pdf', 'jpg'),
+        help='Output format for figures')
+
+
+def register(parser):
+    add_figformat(parser)
+
+
 def run(args):
     ds = Dataset()
     cldf = ds.cldf_reader()
     languages = collections.OrderedDict([(r.id, r) for r in cldf.objects('LanguageTable')])
 
-    with Figure(ds.dir / "plots" / 'languages_map.pdf', languages, title='Languages in the sample') as fig:
+    with Figure(args, ds.dir / "plots" / 'languages_map', languages, title='Languages in the sample') as fig:
         for i, (lid, language) in enumerate(sorted(languages.items(), key=lambda x: x[0])):
             fig.plot_language(language)
 
