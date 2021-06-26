@@ -33,6 +33,8 @@
    automated borrowing detection       0.9134    0.8204     0.8644
    ...
    ```
+   The resulting CLDF dataset is described in its [README](cldf/README.md).
+
    This will take a couple of minutes. To use the default random seed, just hit
    enter when prompted for it.
 
