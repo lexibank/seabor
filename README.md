@@ -12,11 +12,21 @@ If you use these data please cite
 ## Description
 
 
-The CLDF dataset provides manually annotated and automated borrowings in SEA languages along with code by which borrowings can be detected.
+The CLDF dataset provides manually and automatically annotated and automated cognates and borrowings in SEA languages.
 
 This dataset is licensed under a CC-BY-4.0 license
 
 Available online at https://github.com/lexibank/seabor
+
+## Notes
+
+
+Automated annotation of cognacy and borrowings in this dataset has been computed
+using the methods implemented in the `lingrex` package:
+
+> List, Johann-Mattis and Robert Forkel (2021): LingRex. Linguistic reconstruction with LingPy. Version 1.1.0. URL: https://github.com/lingpy/lingrex, DOI: https://doi.org/10.5281/zenodo.1544943. Leipzig: Max Planck Institute for Evolutionary Anthropology.
+
+
 
 ## Statistics
 

@@ -3,7 +3,7 @@
     "aboutUrl": null,
     "dc:bibliographicCitation": "List, Johann-Mattis and Forkel, Robert (2021): Automated identification of borrowings in multilingual wordlists. Leipzig: Max Planck Institute for Evolutionary Anthropology.",
     "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#Wordlist",
-    "dc:description": "The CLDF dataset provides manually annotated and automated borrowings in SEA languages along with code by which borrowings can be detected.",
+    "dc:description": "The CLDF dataset provides manually and automatically annotated and automated cognates and borrowings in SEA languages.",
     "dc:identifier": "https://github.com/lexibank/seabor",
     "dc:isVersionOf": null,
     "dc:license": "https://creativecommons.org/licenses/by/4.0/",
@@ -15,7 +15,7 @@
         {
             "rdf:about": "https://github.com/lexibank/seabor",
             "rdf:type": "prov:Entity",
-            "dc:created": "f8bf556",
+            "dc:created": "d4b1457",
             "dc:title": "Repository"
         },
         {

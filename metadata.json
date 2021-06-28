@@ -1,7 +1,7 @@
 {
     "id": "seabor",
     "title": "CLDF dataset accompanying List and Forkel's \"Borrowing Detection in Multilingual Wordlists\" from 2021",
-    "description": "The CLDF dataset provides manually annotated and automated borrowings in SEA languages along with code by which borrowings can be detected.",
+    "description": "The CLDF dataset provides manually and automatically annotated and automated cognates and borrowings in SEA languages.",
     "license": "CC-BY-4.0",
     "url": "https://github.com/lexibank/seabor",
     "citation": "List, Johann-Mattis and Forkel, Robert (2021): Automated identification of borrowings in multilingual wordlists. Leipzig: Max Planck Institute for Evolutionary Anthropology." 
