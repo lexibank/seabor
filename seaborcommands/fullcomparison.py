@@ -49,7 +49,7 @@ def run(args):
             ref = "cog-{0}".format(i)
             borrowing.internal_cognates(
                     wl,
-                    partial=args.partial
+                    partial=args.partial,
                     runs=10000,
                     ref=ref,
                     method="lexstat",
