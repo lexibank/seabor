@@ -138,6 +138,12 @@ by lateral transfer.
             cognates="autocogid",
             ref="autoborid",
             threshold=0.3)
+        # renumber wordlist to place 0 into their own cluster
+        clusterid = max(wl.get_etymdict("autoborid"))+1
+        for idx in wl:
+            if wl[idx, "autoborid"] == 0:
+                wl[idx, "autoborid"] = clusterid
+                clusterid += 1
 
         # Output the evaluation:
         p1, r1, f1 = evaluate.acd.bcubes(wl, "ucogid", "autocogid", pprint=False)
