@@ -17,6 +17,7 @@ setup(
     install_requires=[
         'pylexibank>=3.2.0',
         'lingrex>=1.1.0',
+        'cldfviz>=0.5.0',
         'collabutils',
         'cartopy',
         'matplotlib',

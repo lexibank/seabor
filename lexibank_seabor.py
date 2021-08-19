@@ -116,6 +116,19 @@ by lateral transfer.
         c2cid = {c.gloss: c.id for c in args.concepticon.api.conceptsets.values()}
 
         wl = self.wl()
+        # we represent non-borrowed words in their own cluster in our
+        # user-defined "borid"
+        clusterid = max([int(x) for x in wl.get_etymdict("uborid")])+1
+        wl.add_entries("userborid", "uborid", lambda x: int(x))
+        for idx in wl:
+            if wl[idx, "userborid"] == 0:
+                wl[idx, "userborid"] = clusterid
+                clusterid += 1
+        # we compute baselines for lumper and splitter
+        wl.add_entries("splitid", {idx: idx for idx in wl}, lambda x: x)
+        wl.add_entries("lumpid", "concept", lambda x: x)
+        wl.add_entries("lumpfamid", "concept,family", lambda x, y: x[y[0]]+"-"+x[y[1]])
+
         # See paper, section "4 Results" and section "3.2 Methods".
         # Detect partial cognates:
         lingrex.borrowing.internal_cognates(
@@ -137,7 +150,8 @@ by lateral transfer.
             wl,
             cognates="autocogid",
             ref="autoborid",
-            threshold=0.3)
+            threshold=0.35)
+        wl.output("tsv", filename="temp", ignore="all")
         # renumber wordlist to place 0 into their own cluster
         clusterid = max(wl.get_etymdict("autoborid"))+1
         for idx in wl:
@@ -145,14 +159,30 @@ by lateral transfer.
                 wl[idx, "autoborid"] = clusterid
                 clusterid += 1
 
+                
+        # add a combined score
+
         # Output the evaluation:
         p1, r1, f1 = evaluate.acd.bcubes(wl, "ucogid", "autocogid", pprint=False)
-        p2, r2, f2 = evaluate.acd.bcubes(wl, "uborid", "autoborid", pprint=False)
+        p2, r2, f2 = evaluate.acd.bcubes(wl, "userborid", "autoborid", pprint=False)
+        p3, r3, f3 = evaluate.acd.bcubes(wl, "ucogid", "lumpfamid",
+                pprint=False)
+        p4, r4, f4 = evaluate.acd.bcubes(wl, "userborid", "lumpid",
+                pprint=False)
+        p5, r5, f5 = evaluate.acd.bcubes(wl, "ucogid", "splitid", pprint=False)
+        p6, r6, f6 = evaluate.acd.bcubes(wl, "userborid", "splitid",
+                pprint=False)
+
         print('')
         with Table("method", "precision", "recall", "f-score",
                 tablefmt="simple", floatfmt=".4f") as tab:
             tab.append(["automated cognate detection", p1, r1, f1])
             tab.append(["automated borrowing detection", p2, r2, f2])
+            tab.append(["lumper bl for cognate detection", p3, r3, f3])
+            tab.append(["lumper bl for borrowing detection", p4, r4, f4])
+            tab.append(["splitter bl for cognate detection", p5, r5, f5])
+            tab.append(["splitter bl for borrowing detection", p6, r6, f6])
+
         print('')
 
         # Write the wordlist to a proper CLDF dataset:
