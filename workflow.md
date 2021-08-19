@@ -154,6 +154,9 @@
    ![admixture](plots/admixture.jpg)
 
 6. And plot xenolog clusters for selected concepts:
+
+csvsql --query "select f.Parameter_ID, group_concat(distinct replace(b.Xenolog_Cluster_ID, 'auto-', '')) from borrowings as b, forms as f where b.Target_Form_ID = f.ID and b.Xenolog_Cluster_ID like 'auto-%' group by f.Parameter_ID order by f.Parameter_ID" cldf/borrowings.csv cldf/forms.csv
+
    - ```shell
      $ cldfbench seabor.plotmaps --concepts name
      ```

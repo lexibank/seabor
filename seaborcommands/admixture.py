@@ -2,21 +2,27 @@
 Create admixture plots from the lexical borrowing data.
 """
 import itertools
-import webbrowser
 import collections
 
-from matplotlib.patches import Wedge, Circle
-import cartopy.crs as ccrs
 from cldfbench.cli_util import add_catalog_spec
 from clldutils.clilib import Table, add_format
 
 from lexibank_seabor import Dataset
 
-from .plotlanguages import pcols, Figure, add_figformat
+pcols = collections.OrderedDict([
+    ('missing', 'white'),
+    ('singleton', '0.5'),
+    ('Sino-Tibetan', 'DodgerBlue'),
+    ('Hmong-Mien', 'Crimson'),
+    ('Tai-Kadai', 'Gold'),
+    ('Hmong-Mien--Sino-Tibetan', 'Orchid'),
+    ('Sino-Tibetan--Tai-Kadai',  'Green'),
+    ('Hmong-Mien--Tai-Kadai',    'Orange'),
+    ('Hmong-Mien--Sino-Tibetan--Tai-Kadai', 'black'),
+])
 
 
 def register(parser):
-    add_figformat(parser)
     add_format(parser, default='simple')
     parser.add_argument('--swadesh100', action='store_true', default=False)
     parser.add_argument('--borrowed', action='store_true', default=False)
@@ -103,46 +109,13 @@ def run(args):
         language.data['props'] = props
         language.data['total'] = total
 
-    with Figure(args, ds.dir / "plots" / fname, langs) as fig,\
-            Table(args, 'doculect', 'family', 'subgroup',
-                  'Single', 'ST', 'HM', 'TK', 'HM-ST', 'ST-TK', 'HM-TK', 'ALL') as table:
+    with Table(args, 'doculect', 'family', 'subgroup',
+               'Single', 'ST', 'HM', 'TK', 'HM-ST', 'ST-TK', 'HM-TK', 'ALL') as table:
         for lid, language in langs.items():
-            coords = (float(language.cldf.longitude), float(language.cldf.latitude))
-            start = 0
             row = [lid, language.data['Family'], language.data['SubGroup']]
-            circle = Circle(
-                coords, 0.26, facecolor=pcols[language.data['Family']], transform=ccrs.PlateCarree())
-            fig.ax.add_patch(circle)
             for p in pcols:
                 row += [language.data['props'][p]]
-                if language.data['props'][p] != 0:
-                    this_prop = 360 * language.data['props'][p]
-                    wedge = Wedge(
-                        coords,
-                        0.25,  # langs[node]['total'] * 0.0005,
-                        start,
-                        start + this_prop,
-                        facecolor=pcols[p],
-                        transform=ccrs.PlateCarree(),
-                        zorder=50
-                    )
-                    fig.ax.add_patch(wedge)
-                    start += this_prop
-
-            fig.ax.text(coords[0] + 0.10, coords[1] + 0.10, lid[:10], fontsize=6, zorder=51)
             table.append(row)
 
-        fig.ax.plot(1, 1, 'o', color='white', markeredgecolor='black', label='missing')
-        fig.ax.plot(1, 1, 'o', color=pcols['singleton'], label='Unique')
-        fig.ax.plot(1, 1, 'o', color=pcols['Hmong-Mien'], label='Hmong-Mien')
-        fig.ax.plot(1, 1, 'o', color=pcols['Sino-Tibetan'], label='Sino-Tibetan')
-        fig.ax.plot(1, 1, 'o', color=pcols['Tai-Kadai'], label='Tai-Kadai')
-        fig.ax.plot(1, 1, 'o', color=pcols['Hmong-Mien--Sino-Tibetan'], label='HM/ST')
-        fig.ax.plot(1, 1, 'o', color=pcols['Hmong-Mien--Tai-Kadai'], label='HM/TK')
-        fig.ax.plot(1, 1, 'o', color=pcols['Sino-Tibetan--Tai-Kadai'], label='ST/TK')
-        fig.ax.plot(1, 1, 'o', color=pcols['Hmong-Mien--Sino-Tibetan--Tai-Kadai'], label='Global')
-
-        fig.ax.legend(loc=2)
         table.sort(key=lambda x: (x[1], x[4], x[5], x[6]))
 
-    webbrowser.open(fig.fname.as_uri())
