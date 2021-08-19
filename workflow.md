@@ -143,35 +143,63 @@
 
 4. Now we can plot the varieties on a map (see Figure 1):
    ```shell
-   $ cldfbench seabor.plotlanguages
+   $ cldfbench cldfviz.map --format jpg --output plots/languages_map.jpg --width 20 --height 10 --language-labels --language-properties Family --language-properties-colormaps '{"Sino-Tibetan": "dodgerblue","Hmong-Mien":"crimson","Tai-Kadai":"gold"}' cldf/cldf-metadata.json
    ```
    ![varieties](plots/languages_map.jpg)
 
 5. Recreate the "admixture" plot:
    ```shell
-   $ cldfbench seabor.piecharts
+   $ cldfbench cldfviz.map --marker-factory plots.py,adm --height 10 --width 20 --format jpg --output plots/admixture.jpg cldf/cldf-metadata.json
    ```
    ![admixture](plots/admixture.jpg)
 
 6. And plot xenolog clusters for selected concepts:
 
-csvsql --query "select f.Parameter_ID, group_concat(distinct replace(b.Xenolog_Cluster_ID, 'auto-', '')) from borrowings as b, forms as f where b.Target_Form_ID = f.ID and b.Xenolog_Cluster_ID like 'auto-%' group by f.Parameter_ID order by f.Parameter_ID" cldf/borrowings.csv cldf/forms.csv
+   To get a list of all xenolog clusters - given by concept ID and comma-separated list of cluster IDs, run
+   ```shell
+   csvsql --query "select f.Parameter_ID, group_concat(distinct replace(b.Xenolog_Cluster_ID, 'auto-', '')) from borrowings as b, forms as f where b.Target_Form_ID = f.ID and b.Xenolog_Cluster_ID like 'auto-%' group by f.Parameter_ID order by f.Parameter_ID" cldf/borrowings.csv cldf/forms.csv
+   ```
 
-   - ```shell
-     $ cldfbench seabor.plotmaps --concepts name
-     ```
-     ![name-146](plots/concept-name-146.jpg)
-     ![name-147](plots/concept-name-147.jpg)
-   - ```shell
-     $ cldfbench seabor.plotmaps --concepts flower
-     ```
-     ![flower-88](plots/concept-flower-88.jpg)
-   - ```shell
-     $ cldfbench seabor.plotmaps --concepts correctright
-     ```
-     ![correctright-43](plots/concept-correctright-43.jpg)
-     ![correctright-44](plots/concept-correctright-44.jpg)
-     ![correctright-45](plots/concept-correctright-45.jpg)
+   Using the identifiers from this list, we can plot the two clusters for "name":
+   ```shell
+   $ cldfbench cldfviz.map --marker-factory plots.py,name,146 --height 10 --width 20 --format jpg --output plots/concept-name-146.jpg cldf/cldf-metadata.json
+
+   ```
+   ![name-146](plots/concept-name-146.jpg)
+   
+   ```shell
+   $ cldfbench cldfviz.map --marker-factory plots.py,name,147 --height 10 --width 20 --format jpg --output plots/concept-name-147.jpg cldf/cldf-metadata.json
+
+   ```
+   ![name-147](plots/concept-name-147.jpg)
+   
+   Or the cluster for "flower":
+
+   ```shell
+   $ cldfbench cldfviz.map --marker-factory plots.py,flower,88 --height 10 --width 20 --format jpg --output plots/concept-flower-88.jpg cldf/cldf-metadata.json
+   ```
+   ![flower-88](plots/concept-flower-88.jpg)
+
+   Or the three clusters for "correct, right":
+
+   ```shell
+   $ cldfbench cldfviz.map --marker-factory plots.py,correctright,43 --height 10 --width 20 --format jpg --output plots/concept-correctright-43.jpg cldf/cldf-metadata.json
+
+   ```
+   ![correctright-43](plots/concept-correctright-43.jpg)
+
+   ```shell
+   $ cldfbench cldfviz.map --marker-factory plots.py,correctright,44 --height 10 --width 20 --format jpg --output plots/concept-correctright-44.jpg cldf/cldf-metadata.json
+
+   ```
+   ![correctright-44](plots/concept-correctright-44.jpg)
+
+   ```shell
+   $ cldfbench cldfviz.map --marker-factory plots.py,correctright,45 --height 10 --width 20 --format jpg --output plots/concept-correctright-45.jpg cldf/cldf-metadata.json
+
+   ```
+   ![correctright-45](plots/concept-correctright-45.jpg)
+ 
 
 7. And you can also check for the significance with respect to the stability of certain concept lists.
    ```shell
